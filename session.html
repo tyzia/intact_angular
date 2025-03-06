@@ -1,0 +1,2213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Session</title>
+  <script>
+    window.onload = () => {
+
+      // A few housekeeping items before we begin:
+      // Please make sure your microphones are muted.
+      // If you have any questions during the session,
+      // feel free to use the chat
+      // or raise your hand.
+
+      // while we are waiting for others to join,
+      // please, vote in the chat
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Intro to the course
+
+
+
+
+
+
+
+
+
+
+
+
+      // Hey, my name is Andrei.
+      // I have been a UI dev since I was born,
+      // but it was only recently that
+      // I actually realised that.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Thanks:
+
+      // Frank Tam - for the idea of this course.
+      // Marwan Aziz & Augusto Wong - UI experts - for their insights.
+      // Jeff Song - for his support and guidance.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Special thanks to all of you
+      // and your interest in learning Angular.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // What is this course about?
+
+
+
+
+
+
+
+
+
+
+
+      // This course is my attempt to give you practical
+      // examples of how Angular & JavaScript work.
+
+      // The content is based on my experience
+      // and personal preferences in coding.
+      // It is up to you if you choose to follow them or not.
+
+      // I will be jumping between the lecture file and browser a lot
+      // to show the examples.
+
+      // It is a pilot course. Please, don't be too strict
+      // and I will appreciate your feedback.
+
+      // You will have access to these slides on my GitHub.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // During the course we will talk about:
+
+
+
+
+
+
+      // 0 - Who is better: backend or frontend devs
+      // 1 - JavaScript
+      // 2 - Typescript
+      // 3 - Styling (CSS) & Tailwind
+      // 4 - Angular
+      // 5 - Components, Services, Directives, Pipes
+      // 6 - RxJS, Reactive Forms
+
+      // The order of the sessions might be adjusted
+      // based on how the course progresses.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // At the end of this course you will NOT:
+      // -- be a UI developer.
+      // -- know Angular.
+
+      // All these things come only with practice.
+
+      // I hope that after this course you will:
+      // -- get an idea of how UI works.
+      // -- get curious and willing to practice UI development.
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Questions
+
+      // I will be pausing between topics,
+      // asking for your questions.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Who is better: backend devs or frontend devs?
+
+      // meme demo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Plan
+
+      // Main topic: JavaScript.
+
+
+
+      // naming conventions
+
+      // variables
+
+      // scopes
+
+      // values
+
+      // truthy vs falsy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // What is the hardest thing in programming?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Naming variables
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // const x
+      // const arr
+      // const tmp
+      // Short names: The problem here - we don't know what is inside.
+
+
+      // const numberOfActiveUsersInTheCurrentSessionForBrokerUser
+      // Long names: The problem here - it is hard to read.
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // If both short and long names are bad,
+      // what to choose?
+
+      // We need a balance.
+
+
+
+
+
+
+
+
+
+
+
+
+      // Best practice:
+
+      // 1) Use meaningful names.
+
+      // Bad:
+      // let x = 10;
+      // let str = 'Hello';
+
+      // Good
+      // let numberOfRetries = 10;
+      // let welcomeMessage = 'Hello';
+
+      // 2) Use nouns for variables
+      // & verbs for functions.
+
+      // Bad:
+      // let calculateTotalPrice = 25;
+      // function userAge() {}
+
+      // Good:
+      // let userAge = 25;
+      // function calculateTotalPrice() {}
+
+      // 3) Avoid abbreviations.
+
+      // Bad:
+      // let usrCnt = 10;
+
+      // Good:
+      // let userCount = 10;
+
+      // 4) Consider scope when naming
+      // i.e. how long will variable 'live'.
+
+      // -- Larger scope == longer name
+      // -- Smaller scope == shorter name
+
+      // Large (Global) scope:
+      // const maximumAllowedConnections = 100;
+
+      // Small (local) scope:
+      // for (let i = 0; i < 2; i++) { console.log(i) }
+
+      // 5) Avoid reserved words.
+
+      // Bad:
+      // const class = 'Math';
+
+      // Good:
+      // const className = 'Math';
+
+      // 6) Name of a variable with boolean value
+      // should answer: true or false
+      // and start with 'is' or 'has'.
+
+      // Bad:
+      // let visible = true;
+      // let activities = true;
+
+      // Good:
+      // let isVisible = true;
+      // let hasActivities = true;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Variables
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // There are two variable types in JS.
+
+      // let
+      // const
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Let's talk about scopes first
+
+      // -- Global (outside any function)
+      // -- Function (inside a function)
+      // -- Block (inside a block)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Global scope
+
+      // Variables declared in global scope can be accessed
+      // from anywhere in the code.
+
+      // const name = 'Andrei';
+      // function greet() {
+      //     console.log(name);
+      // }
+      // greet(); // Andrei
+
+
+      // Function scope
+
+      // Variables declared inside a function are local to that function
+      // and cannot be accessed outside of it.
+
+      // function iceAge() {
+      //     const age = 1;
+      // }
+      // console.log(age); // ReferenceError: age is not defined
+
+      // function iceAge() {
+      //     const age = 1;
+      //     console.log(age); // 1
+      // }
+      // iceAge();
+
+
+      // Block scope
+
+      // Variables declared inside a block are only
+      // accessible within this block.
+      // Block scope is created by { }.
+
+      // if (true) {
+      //     let a = 10;
+      // }
+      // console.log(a); // ReferenceError: a is not defined
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Scopes protect your code from accidental
+      // change of your variables and unexpected results.
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Why not var?
+
+
+
+
+
+
+
+
+
+
+
+      // 1) var is accessible outside the block where it was declared
+
+      // if (true) {
+      //     var x = 10;
+      // }
+      // console.log(x); // 10
+
+
+      // 2) var is hoisted to the top of its scope,
+      // meaning you can reference them before declaring them
+      // and get unexpected results instead of error.
+
+      // console.log(y); // undefined
+      // var y = 20;
+
+      // console.log(y + 1); // NaN
+      // var y = 20;
+
+      // you can't do the same with 'let'
+      // console.log(y); // ReferenceError: Cannot access 'c' before initialization
+      // let y = 20;
+
+      // 3) var can be redeclared
+      // var z = 5;
+      // var z = 15;
+      // console.log(z); // 15
+
+      // you can't do the same with 'let'
+      // let z = 5;
+      // let z = 10; // SyntaxError: Identifier 'z' has already been declared
+
+      // 4) var doesn't create new scope in the loop
+      // for (var i = 0; i < 3; i++) {
+      //     setTimeout(() => console.log(i)); // 3, 3, 3 (not 0, 1, 2 as expected)
+      // }
+
+      // if you use let, the behavior is as expected
+      // for (let i = 0; i < 3; i++) {
+      //     setTimeout(() => console.log(i)); // 0, 1, 2
+      // }
+
+      // you can't use const, as it can't be reassigned a value
+      // for (const i = 0; i < 3; i++) { // TypeError: Assignment to constant variable
+      //     setTimeout(() => console.log(i));
+      // }
+
+
+
+
+
+
+
+
+      // var allows you to do many 'crazy' things
+      // and give no errors
+      // which can lead to dangerous and unexpected results.
+
+
+
+
+
+
+
+
+
+      // Never use 'var'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Explanation (for further reference):
+
+      // console.log(y); // undefined
+      // var y = 20;
+
+      // JavaScript parses the script and finds var y = 20.
+      // During the parsing phase, var y is hoisted to the top of its scope (global scope in this case), but the assignment y = 20 is not hoisted.
+      // The variable y is declared at the top of the scope with an initial value of undefined.
+      // The script then executes console.log(y), which logs undefined because the assignment has not occurred yet.
+      // After logging, the assignment y = 20 is executed, and y is assigned the value 20.
+
+
+      // for (var i = 0; i < 3; i++) {
+      //     setTimeout(() => console.log(i)); // 3, 3, 3 (not 0, 1, 2 as expected)
+      // }
+
+      // The for loop starts with var i = 0.
+      // The setTimeout function is called, which schedules the console.log(i) to run after the loop finishes.
+      // The loop increments i to 1 and repeats the process. Encounters setTimeout again, and schedules another console.log(i) to run after the loop finishes.
+      // The loop increments i to 2 and repeats the process. Encounters setTimeout again, and schedules another console.log(i) to run after the loop finishes.
+      // The loop increments i to 3, which ends the loop as i is no longer less than 3.
+      // At this point, the loop has finished, and i is 3. The setTimeout callbacks are now executed from the asynchronous queue.
+      // Since var is globally scoped, all three setTimeout callbacks reference the same i, which is now 3. Therefore, console.log(i) outputs 3 three times.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // const
+
+
+
+
+
+
+
+
+
+
+
+
+      // By default always use 'const' to declare your variables.
+
+      // Examples
+
+      // const pi = 3.14;
+      // const city = 'Toronto';
+      // const person = { name: 'Leo', age: 1 };
+      // const arr = [ 1, 2, 3, 4 ];
+      // const greet = function() { console.log('Hello!'); };
+
+
+
+
+
+
+
+
+      // With const I can:
+      // -- change its value if it is an array or object.
+
+      // With const I can't:
+      // -- declare it without initial value.
+      // -- reassign to primitive value (string, number, boolean).
+      //    new object or new array.
+
+
+
+
+
+      // Examples
+
+
+
+
+
+
+
+
+
+      // I can:
+
+
+
+
+      // 1) Update element of const array
+
+      // const numbers = [ 1, 2, 3, 4 ];
+      // console.log(numbers);
+      // numbers[0] = -1;
+      // console.log(numbers);
+
+      // 2) Add new value to const array
+
+      // const numbers = [ 1, 2, 3, 4 ];
+      // console.log(numbers);
+      // numbers.push(5);
+      // console.log(numbers);
+
+      // 3) Update property of const object
+
+      // const person = { name: 'Mark', age: 1 };
+      // console.log(person.name);
+      // person.name = 'John';
+      // console.log(person.name);
+
+      // 4) Add new property to const object
+
+      // const person = { name: 'Mark', age: 1 };
+      // person.location = 'Canada';
+      // console.log(person);
+
+      // This happens because:
+      // -- The const variable is a pointer to a specific memory location
+      //    where the object or array is stored.
+      // -- The pointer itself cannot be changed, but the contents of the
+      //    object or array at that memory location can be modified.
+
+
+
+
+
+
+
+
+
+
+
+      // I can't:
+
+
+
+
+
+
+      // 1) Change primitive value:
+      // number, string, boolean.
+
+      // const pi = 3.14;
+      // pi = 3.15; // TypeError: Assignment to constant variable.
+
+      // const city = 'Toronto';
+      // city = 'Ottawa'; // TypeError: Assignment to constant variable.
+
+      // const isDisabled = true;
+      // isDisabled = false; // TypeError: Assignment to constant variable.
+
+      // 2) Reassign const array
+
+      // const numbers = [ 1, 2, 3, 4 ];
+      // numbers = [ 1, 2, 3, 4, 5 ]; // TypeError: Assignment to constant variable.
+
+      // 3) Reassign const object
+
+      // const person = { name: 'Mark', age: 1 };
+      // person = { name: 'John', age: 2 }; // TypeError: Assignment to constant variable.
+
+      // 4) Declare const without initial value
+      // const country; // SyntaxError: Missing initializer in const declaration
+
+
+
+
+
+
+
+
+
+
+
+
+      // let
+
+
+
+
+
+
+      // Use let whenever const is not appropriate:
+      // -- for variable content like counters, iterators, or something changing.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Types of values of your variables
+
+
+
+      // primitive values:
+
+      // const name = 'Andrei'; // string ("", '', ``)
+      // const age = 18; // number
+      // const isLogged = true; // boolean true/false
+
+      // non-primitive values:
+
+      // const colors = [ 'red', 'white', 'black' ]; // array
+      // const person = { name: 'Leo', age: 1 }; // object
+      // const greet = function() { console.log('Hello!'); }; // function
+
+
+
+
+      // special values in JavaScript
+
+      // undefined - a variable that has been declared but not assigned a value
+      // null - an assignment value that represents no value
+      // NaN - a value representing Not-a-Number
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Arrays examples
+
+      // const colors = [ 'red', 'white', 'black' ]; // array of strings
+      // const transactions = [ 1000, 900, 14000 ]; // array of numbers
+      // const emptyArray = []; // empty array
+      // const arrayWithNulls = [ 'person', null, 'another person', 3 ]; // array of mixed values
+      // const arrayWithObjects = [
+      //     { name: 'Mona', age: 18 },
+      //     { name: 'Rafael', age: 4 },
+      //     { name: 'Lisa', age: 71 },
+      // ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Array methods
+      // each array has these methods by default
+
+
+
+
+
+
+
+
+
+      // .forEach()
+
+
+
+
+
+
+
+
+
+
+      // Example
+
+      // For loop:
+
+      // const numbers = [1, 2, 3, 4];
+      // for (let i = 0; i < numbers.length; i++) {
+      // 	console.log(numbers[i]);
+      // }
+
+
+
+      // .forEach()
+      // We can use .forEach() for the same task:
+
+      // const numbers = [1, 2, 3, 4];
+      // numbers.forEach(num => console.log(num));
+
+
+
+
+
+
+
+
+
+
+
+      // .slice()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // .slice() = creates new array
+      // as portion of original array
+
+
+
+
+
+      // I want to copy values from 300 to 500
+      // from initial array to new array
+
+      // console.log([100, 200, 300, 400, 500, 600].slice(2, 5)); // [300,400,500]
+      // 2 - starting index (its value is included)
+      // 5 - finishing index (its value is not included)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // .map()
+
+
+
+
+
+
+
+
+
+
+
+
+      // .map() = creates a new array by
+      // applying my function to each element
+      // of original array
+
+
+
+
+
+      // I want to double values from array
+      // and save them in new array
+
+      // const original = [1, 2, 3, 4];
+      // const doubled = original.map(num => num * 2);
+      // console.log(original); // [1,2,3,4]
+      // console.log(doubled); // [2,4,6,8]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // .filter()
+
+
+
+
+
+
+
+
+
+
+
+
+      // .filter() = creates a new array
+      // with elements which pass my test
+
+
+
+
+
+      // I want only positive values from array
+      // and save them in new array
+
+      // const original = [-1, -2, 3, -4, 5];
+      // const positive = original.filter(num => num >= 0);
+      // console.log(original); // [-1,-2,3,-4,5]
+      // console.log(positive); // [3,5]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // .some()
+
+
+
+
+
+
+
+
+
+
+
+
+      // .some() = returns true if at least
+      // one element in the array passes my test
+      // otherwise false
+
+
+
+
+
+      // Even vs odd example
+
+      // I want to know if there is at least one even value
+      // in the array
+
+      // console.log([1, 2, 3, 7, 5].some(num => num % 2 === 0)); // true: one value (2) is even
+      // console.log([1, 9, 3, 7, 5].some(num => num % 2 === 0)); // false: no even
+      // console.log([2, 4, 6, 8, 8].some(num => num % 2 === 0)); // true: all even
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // .find()
+
+
+
+
+
+
+
+
+
+
+
+
+      // .find() = returns first element
+      // from the array which passes my test
+      // otherwise returns undefined
+
+
+
+
+
+      // I want to find first number greater than 3
+      // in the array
+
+      // console.log([1, 4, 5, 7, 9].find(num => num > 3)); // 4
+
+
+
+
+
+
+
+
+
+      // How to find all elements satisfying my condition?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Answer: .filter()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Truthy & Falsy values
+
+
+
+
+
+
+
+      // These are values which JavaScript will convert
+      // to true or false.
+
+      // If value is converted to true, it is truthy.
+      // If value is converted to false, it is falsy.
+
+      // Please, note JavaScript will convert any value
+      // to true or false. You need to remember
+      // these conversions.
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // In JavaScript any value, which is not falsy
+      // is considered truthy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Falsy values
+
+      // false
+      // 0
+      // ""
+      // null
+      // undefined
+      // NaN
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // !! - explicitly converts a value into boolean
+
+
+      // console.log('falsy values below')
+      // console.log(!!false);
+      // console.log(!!0);
+      // console.log(!!"");
+      // console.log(!!undefined);
+      // console.log(!!null);
+      // console.log(!!NaN);
+
+
+
+
+
+
+
+
+
+      // Truthy values
+
+
+
+      // true
+      // number (not 0)
+      // string (not empty)
+      // Object {}
+      // Array []
+      // Function
+
+
+
+
+
+
+
+
+
+
+
+
+      // console.log('truthy values below');
+      // console.log(!!true);
+      // console.log(!!1);
+      // console.log(!!"hello");
+      // console.log(!!{ key: "value" });
+      // console.log(!![1, 2, 3]);
+      // console.log(!!function() {});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // what will be the output?
+
+      // console.log('tricky options');
+      // console.log(!!-1);
+      // console.log(!!"0");
+      // console.log(!!"false");
+      // console.log(!!{});
+      // console.log(!![]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Functions
+
+
+
+
+
+
+
+
+
+
+      // function - a reusable block of code
+      // that performs a specific task.
+
+
+
+
+
+      // Two ways to create a function:
+
+      // One way:
+
+      // function onePlusOne() {
+      //     const result = 1 + 1;
+      //     return result;
+      // }
+      // console.log(onePlusOne());
+
+
+      // Second way:
+
+      // const twoPlusTwo = function() {
+      //     const result = 2 + 2;
+      //     return result;
+      // }
+      // console.log(twoPlusTwo());
+
+
+      // Arrow functions
+
+      // const threePlusThree = () => {
+      //     const result = 3 + 3;
+      //     return result;
+      // }
+      // console.log(threePlusThree());
+
+
+      // Or even this simple syntax:
+
+      // const fourPlusFour = () => 4 + 4;
+      // console.log(fourPlusFour());
+
+      // With parameter (without parentheses):
+
+      // const sumOfVariable = numberIn => numberIn + 1;
+      // console.log(sumOfVariable(2));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Refactoring example
+
+      // function validateAge(ageToValidate) {
+      //     let isAgeValid;
+      //
+      //     if (ageToValidate >= 18 || ageToValidate <= 25) {
+      //         isAgeValid = true;
+      //     } else {
+      //         isAgeValid = false;
+      //     }
+      //
+      //     return isAgeValid;
+      // }
+
+
+      // Refactor 1
+
+      // function validateAge(ageToValidate) {
+      //     if (ageToValidate >= 18 || ageToValidate <= 25) {
+      //         return true;
+      //     } else {
+      //         return false;
+      //     }
+      // }
+
+
+      // Refactor 2
+
+      // function isAgeValid(ageToValidate) {
+      //     return ageToValidate >= 18 && ageToValidate <= 25;
+      // }
+
+
+      // Refactor 3
+
+      // const isValidAge = age => age >= 18 && age <= 25;
+      //
+      // console.log(isValidAge(19));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Benefits of short notation & arrow functions:
+
+      // -- clearly expresses the logic in a single line.
+      // -- avoids unnecessary variable declarations and conditional blocks.
+
+      // However, for complex logic, longer notation is preferable.
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Short notation if-else
+
+
+
+
+
+
+
+
+
+
+      // Example of regular syntax
+
+      // let result;
+      // const condition = true;
+      //
+      // if (condition) {
+      //   result = 'hello';
+      // } else {
+      //   result = 'see you';
+      // }
+      // console.log(result);
+
+
+      // Short Syntax: isConditionTrue ? expressionIfTrue : expressionIfFalse
+
+      // const condition = true;
+      // const result = condition ? 'hello' : 'see you';
+      // console.log(result);
+
+
+      // When to use?
+
+      // -- simple, single-line conditions
+      // -- avoid short notation for complex logic
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Logical Operators
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // && (AND)
+      // || (OR)
+
+
+
+
+
+
+
+
+
+
+
+
+      // && (AND)
+
+
+
+
+
+
+      // This operator evaluates the expression
+      // and returns:
+      // -- value of first falsy operand
+      // -- value of the last operand if all are truthy
+
+
+
+      // console.log("" && true); // output is empty string, not false, even if empty string is falsy
+      // console.log(0 && true); // 0
+      // console.log(1 < 2 && null); // null
+      // console.log(1 < 2 && undefined && false); // undefined
+      // console.log(1 && 2); // 2
+      // console.log(1 && 2 && 3 && 4 && -1); // -1
+      // console.log(1 < 2 && 'hi'); // 'hi'
+
+
+
+
+      // Short circuit.
+
+      // Important!
+      // && = will NEVER execute right-hand side
+      // if left-hand side is false
+
+      // console.log(false && 'you never see me');
+
+      // This feature allows me to write code like:
+
+      // const isLoggedIn = true;
+      // isLoggedIn && console.log('You are logged in');
+
+
+
+
+
+
+
+
+
+
+      // || (OR)
+
+
+
+
+
+
+      // This operator evaluates the expression
+      // and returns:
+      // -- value of first truthy operand
+      // -- value of the last operand if all are falsy
+
+
+      // console.log(1 || 2); // 1
+      // console.log(3 || true || []); // 3
+      // console.log(null || 'city'); // city
+      // console.log(false || 0 || '' || undefined); // undefined
+
+
+
+      // Short circuit.
+
+      // Important!
+      // || = will NEVER execute right-hand side
+      // if left-hand side is true
+
+      // console.log(true || 'you never see me');
+
+
+      // Important!
+      // On the other hand
+      // || = will ALWAYS execute right-hand side
+      // if left-hand side is false
+
+      // console.log(false || 'you always see me');
+
+
+      // This feature allows me to set default values like:
+
+      // const username = null;
+      // const name = username || "Default value: Guest";
+      // console.log(name);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Optional chaining operator (?.)
+
+
+
+
+
+
+
+
+
+
+
+
+      // Allows reading the value of a property without validating that it exists.
+
+
+      // The problem:
+
+      // const user = { name: 'John' };
+      // console.log(user.address.city); // TypeError: Cannot read property 'city' of undefined
+
+      // One solution:
+
+      // const user = { name: 'John' };
+      // if (user.address) {
+      //   console.log(user.address.city);
+      // }
+      // user.address = { city: 'New York' };
+      // if (user.address) {
+      //   console.log(user.address.city);
+      // }
+
+
+      // Better way to do it:
+
+      // const user = { name: 'John' };
+      // console.log(user.address?.city); // undefined
+      // user.address = { city: 'New York' };
+      // console.log(user.address?.city); // New York
+
+
+
+
+
+
+
+
+
+
+
+
+      // We can use ?. with arrays
+
+
+      // The problem:
+
+      // const users = [ { name: 'John' }, { name: 'Jane' } ];
+      // console.log(users[2].name); // TypeError: Cannot read property 'name' of undefined
+
+      // The solution:
+
+      // const users = [ { name: 'John' }, { name: 'Jane' } ];
+      // console.log(users[2]?.name); // Output: undefined
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Sync vs Async
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // In JavaScript tasks can be handled in two ways:
+
+      // -- Synchronously
+      // -- Asynchronously (async)
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Synchronous (Sync) means tasks happen one after another,
+      // in the order they are written.
+
+      // console.log("1");
+      // console.log("2");
+      // console.log("3");
+
+
+
+
+
+      // Asynchronous (Async) means tasks can happen
+      // at the same time, allowing the program to
+      // keep running without waiting for each task to finish.
+
+      // console.log("1");
+      // setTimeout(() => console.log("2"));
+      // console.log("3");
+
+
+      // Async behavior can be produced by:
+      // -- API calls
+      // -- event listeners
+      // -- timers
+
+
+
+
+
+
+
+
+
+
+      // When we talk about asynchronous
+      // we should mention two ways to handle it:
+
+      // -- Promise (http calls)
+      // -- Callbacks (event listeners)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Promise
+
+      // A Promise represents a value that will be available in the future.
+
+      // A Promise is a result of asynchronous operation.
+      // It can have two distinct states:
+
+      // -- resolve
+      // -- reject
+
+      // .then() - in case promise resolves (returns data)
+      // .catch() - in case promise is rejected (returns error)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // API example
+
+      // function getWeather() {
+      //     console.log("Start");
+      //     fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m')
+      //         .then(response => console.log('Response', response.json()))
+      //         .catch(error => console.log("Error:", error));
+      //     console.log("Finish");
+      // }
+      //
+      // getWeather();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Important to remember!
+
+      // Async is a fundamental part of the JavaScript.
+      // You don’t explicitly code for async behavior.
+      // You need to understand how async works.
+      // But it still will work even
+      // if you don't understand it ))
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Why async is used?
+
+      // We don’t want the program to freeze
+      // while waiting for long tasks like
+      // network requests or file reading.
+
+
+
+
+
+
+
+
+
+
+      // To make async function behave like synchronous
+      // we need to wait for its response using 'await'
+
+      // async - add this keyword before function definition
+      // await - add this keyword to async operation to wait for response
+
+
+
+
+
+
+
+
+
+
+      // Adding 'async' keyword to a function
+      // will make this function asynchronous
+      // and this function will always return a Promise.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Example
+
+      // Regular arrow function
+
+      // const example = () => 5;
+      // console.log(example());
+
+
+      // Async function returning Promise
+
+      // const example = async () => 5;
+      // console.log(example());
+
+
+
+
+      // Let's demonstrate the problem:
+
+      // const example = () => 5; // add async
+      // const result = example() + 1;
+      // console.log(result);
+
+
+      // To get actual result from async function
+
+      // const example = async () => 5;
+      // example().then(result => console.log(result));
+
+      // Or if I need to use that value:
+
+      // const example = async () => 5;
+      // example().then(val => {
+      //     const result = val + 1;
+      //     console.log(result);
+      // })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Let's make async to behave like sync
+
+      // async function getWeather() {
+      //     console.log("Start");
+      //     const result = await fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m')
+      //         .then(response => response.json())
+      //         .catch(error => console.log("Error:", error));
+      //     console.log(result);
+      //     console.log("Finish");
+      // }
+      //
+      // getWeather();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Callback
+
+      // A special function attached to event
+      // when we listen to this event.
+
+
+
+
+
+
+
+
+
+
+
+      // Example of Callback
+
+      // document.querySelector('button').addEventListener('click', function () {
+      //     console.log('Button was clicked!');
+      // });
+
+      // Callback is:
+
+      // function () {
+      // 	console.log('Button was clicked!');
+      // }
+
+
+      // We wait for event to happen to execute our code.
+      // Our program continues to run without waiting
+      // for button click to occur.
+
+
+
+
+
+
+
+
+
+
+      // Callback can have a name:
+
+      // const handleClick = () => console.log('Click event happened');
+      // document.querySelector('button').addEventListener('click', handleClick);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Thank you!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

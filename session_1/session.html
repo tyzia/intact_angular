@@ -1883,6 +1883,197 @@
 
 
 
+      // Object destructuring
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Object destructuring is a powerful feature in JavaScript.
+      // It allows to extract properties from objects.
+      // And assign them to variables.
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Example
+
+      // const person = { name: 'Alice', age: 25, city: 'Wonderland' };
+      // const name = person.name;
+      // const age = person.age;
+      // const city = person.city;
+      // console.log(name); // 'Alice'
+      // console.log(age); // 25
+      // console.log(city); // 'Wonderland'
+
+
+
+      // Here I extracted values from the array and assigned
+      // them to corresponding values.
+
+
+
+
+
+
+
+
+
+
+      // I can do the same but in a concise way
+      // with Object destructuring:
+
+
+
+      // const person = { name: 'Alice', age: 25, city: 'Wonderland' };
+      // const { name, age, city } = person;
+      // console.log(name); // 'Alice'
+      // console.log(age); // 25
+      // console.log(city); // 'Wonderland'
+
+
+
+
+
+
+
+
+
+
+
+
+      // I may wish not to extract all properties,
+      // but only those which I need:
+
+      // const person = { name: 'Alice', age: 25, city: 'Wonderland' };
+      // const { age } = person;
+      // console.log(age); // 25
+
+
+
+
+
+
+
+
+
+
+
+
+      // I can set default values in case property doesn't exist
+
+      // const person = { name: 'Alice', age: 25, city: 'Wonderland' };
+      // const { age = 18, country = 'Unknown' } = person;
+      // console.log(age); // 25
+      // console.log(country); // 'Unknown'
+
+
+      // Default property will be used only if value
+      // is undefined.
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // const person = { name: 'Alice', age: null, city: 'Wonderland' };
+      // const { age = 18 } = person;
+      // console.log(age); // null
+
+
+      // Default property is not used because the value
+      // of 'age' property is not undefined.
+
+
+
+
+
+
+
+
+
+
+
+
+      // We can use destructuring in
+      // function parameters
+
+
+
+
+
+
+
+
+
+
+
+      // const person = { name: 'Alice', age: 25, city: 'Wonderland' };
+      //
+      // function greet({ name, age }) {
+      //     console.log(`Hello, ${name}! You are ${age} years old.`);
+      // }
+      //
+      // greet(person); // 'Hello, Alice! You are 25 years old.'
+
+
+
+
+
+
+
+
+
+
+      // You can't destructure null or undefined
+
+      // const { name } = null; // TypeError: Cannot destructure property 'name' of 'null'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       // Sync vs Async
 

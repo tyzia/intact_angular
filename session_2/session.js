@@ -28,6 +28,9 @@
 
 
 
+
+
+
 // What is TypeScript?
 
 // TypeScript is a superset of JavaScript.
@@ -55,7 +58,109 @@
 
 
 
-// Let's check if you have TypeScript installed:
+
+
+
+// Before continue with TypeScript
+// let's create a test project with
+// vanilla JS
+
+
+
+
+
+
+
+
+
+
+// In my test project I will create two files:
+
+// -- index.html
+// -- script.js
+
+
+
+
+
+
+
+
+
+
+// index.html
+
+// <!DOCTYPE html>
+// <html lang="en">
+//     <head>
+//     <meta charset="UTF-8">
+//     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//     <title>Basic JavaScript Demo</title>
+// </head>
+// <body>
+// <h1>Basic JavaScript Demo</h1>
+// <p id="demo">This will be updated with JavaScript.</p>
+//
+// <button onclick="changeText()">Click me to change the text</button>
+//
+// <script src="script.js"></script>
+// </body>
+// </html>
+
+
+
+
+
+
+
+// script.js
+
+// function changeText() {
+//     const message = "Hello, you clicked the button!";
+//     const paragraph = document.getElementById("demo");
+//     paragraph.innerHTML = message;
+//     console.log("Text has been changed.");
+// }
+
+
+
+
+// This code:
+// - get's element on the page with #demo
+// - changes it's text
+// - logs in the console a message
+// - JS code is executed on button click
+
+
+
+
+
+
+// demo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Now let's add TypeScript to the project
+
+
+
+
+
+
+
+
+// First, let's check if I have TypeScript installed:
 
 
 // tsc -v
@@ -98,16 +203,38 @@
 
 // let's initialise npm project
 
-// > mkdir test
-// > cd test
-// > npm init -y
-// > ls
 
 
-// This will initiate npm project and create 2 files:
 
-// - package.json
-// - package-lock.json
+
+
+// I could do it with 'npm init' command
+// but let me show how to do that manually
+
+
+
+
+
+
+// All I need is to create package.json file
+// with this content:
+
+
+
+
+// {
+//     "name": "1",
+//     "version": "1.0.0",
+//     "main": "script.js",
+//     "scripts": {},
+//     "keywords": [],
+//     "author": "",
+//     "license": "ISC",
+//     "description": ""
+// }
+
+
+
 
 
 // package.json - heart of an npm project.
@@ -123,27 +250,6 @@
 
 
 
-// Example of package.json
-
-// {
-//     "name": "my-ts-project",
-//     "version": "1.0.0",
-//     "description": "A TypeScript project",
-//     "main": "index.js",
-//     "scripts": {
-//     "build": "tsc",
-//         "start": "node dist/index.js"
-// },
-//     "devDependencies": {
-//     "typescript": "^4.5.4"
-// },
-//     "dependencies": {}
-// }
-
-
-
-
-
 
 
 
@@ -153,6 +259,18 @@
 
 // It should be a dev dependency, because it is necessary
 // only in development stage.
+
+
+
+
+
+
+// This command will create two things:
+
+// - package-lock.json file
+// - node_modules folder
+
+
 
 
 
@@ -200,12 +318,14 @@
 
 // What is npx?
 
-// npx is part of npm and allows to run binaries from node_modules
-// without needing them to be installed globally.
+// npx allows to run binaries locally (from node_modules).
 
 // node_modules - is a folder where all dependencies of my
 // project are installed.
 
+
+// package-lock.json - provides a detailed and exact record
+// of the dependency tree installed in a project.
 
 // > ls node_modules
 
@@ -219,7 +339,7 @@
 
 
 
-// Installing is not enough, we need to add
+// Installing is not enough, we need to create
 // TS settings
 
 
@@ -229,9 +349,351 @@
 
 
 
+// I can run this command:
 // > npx tsc --init
 
-// This will create tsconfig.json with all settings
+// Or I can create my tsconfig.json manually:
+
+// {
+//     "compilerOptions": {
+//         "outDir": "./dist",
+//         "strict": true,
+//         "esModuleInterop": true,
+//         "skipLibCheck": true,
+//         "forceConsistentCasingInFileNames": true
+//     },
+//     "include": ["*.ts"]
+// }
+
+
+// This is a configuration file for our TS where we can specify
+// how and where we want files to be compiled from TS to JS.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// "outDir": "./dist", - where all my compiled JS files will go to.
+// "include": ["*.ts"] - which files to compile.
+
+
+
+
+
+
+
+
+
+
+// Now we have TS installed, let's convert JS into TS
+// I will make a copy of this file for the sake of example.
+
+
+// > cp script.js script_ts.ts
+
+
+
+
+// Now let’s run:
+// > npx tsc
+
+
+
+// Ok, it doesn’t work, why?
+// Our JS was working before,
+// but TS failed to compile.
+
+
+
+
+// paragraph is possibly null
+// and I am trying to assign value
+// to the property of null.
+// This will crash my app.
+
+
+
+
+
+
+// Let's demo the crash.
+
+
+
+
+
+
+
+
+// Let’s modify JS like this:
+
+
+
+// function changeText() {
+//     const message = "Hello, you clicked the button!";
+//     const paragraph = document.getElementById("demo");
+//     paragraph.innerHTML = message;
+//     console.log('At this moment app will crash')
+//     null.innerHTML = 'andrei';
+//     console.log('you never see me or anything below will work')
+//     console.log("Text has been changed.");
+// }
+
+
+
+
+
+// Any time I will click on the button,
+// this function ‘changeText()’ will run
+// and I will get error and app will crash.
+
+
+// Demo in the browser.
+
+
+
+
+
+
+
+
+
+// Ok, thank you, TS,
+// you helped me find a bug during
+// development stage.
+
+// It is exactly why I am using TS!
+
+
+
+
+
+
+
+
+
+
+// Let’s fix the code in TS:
+
+
+
+// function changeText() {
+//     const message= "Hello, you clicked the button!";
+//     const paragraph = document.getElementById("demo");
+//     if (paragraph) {
+//         paragraph.innerHTML = message;
+//     }
+//     console.log("Text has been changed (TS).");
+// }
+
+
+
+// (move)
+// One more thing to note – I can’t use ?. (optional chaining) operator here, because it is left-hand side.
+//
+//     Paragraph?.innerHTML = message; // will not work
+
+
+
+// Now let’s run compiler again:
+
+
+
+// > npx tsc
+
+
+
+
+
+
+
+
+// And we see the result JS file in dist/
+
+
+// "use strict";
+// function changeText() {
+//     var message = "Hello, you clicked the button!";
+//     var paragraph = document.getElementById("demo");
+//     if (paragraph) {
+//         paragraph.innerHTML = message;
+//     }
+//     console.log("Text has been changed.");
+// }
+
+
+
+
+
+
+
+
+
+
+
+// But wait, why the compiled JS code
+// has all vars which I was teaching
+// you should never use?
+
+
+
+
+
+
+
+
+
+// To fix it, we need to specify which
+// version of JS the code should be compiled to:
+
+
+
+
+
+// Add ‘target’: ‘ES6’ to tsconfig.json
+
+
+// tsconfig.json
+
+// {
+//     "compilerOptions": {
+//     "outDir": "./dist",
+//         "target": "ES6",
+//         "strict": true,
+//         "esModuleInterop": true,
+//         "skipLibCheck": true,
+//         "forceConsistentCasingInFileNames": true
+// },
+//     "include": ["*.ts"]
+// }
+
+
+
+
+
+
+
+// Run npx tsc again.
+
+// > npx tsc
+
+
+
+// Now a better result:
+
+
+//     "use strict";
+// function changeText() {
+//     const message = "Hello, you clicked the button!";
+//     const paragraph = document.getElementById("demo");
+//     if (paragraph) {
+//         paragraph.innerHTML = message;
+//     }
+//     console.log("Text has been changed.");
+// }
+
+
+
+// Now that we know how TS is helping
+// us let’s talk about other useful features of TS:
+
+
+
+
+
+
+
+
+
+
+
+
+// I can add types to my variables now:
+
+// const message: string = "Hello, you clicked the button!";
+
+// I can add type to for the return of my function,
+// in this case it doesn’t return anything,
+// I will add void
+
+// function changeText(): void { … }
+
+
+
+
+
+
+
+
+
+// Other popular primitive types which I can use in TS:
+
+// - number
+// - boolean
+
+// const pi: number = 3.14;
+// const isDisabled: boolean = true;
+
+
+
+// I can specify the types of my arrays:
+
+// const nums: number[] = [1, 2, 3];
+
+
+// TS allows us to have enums:
+
+// enum Status {
+//   Active = "ACTIVE",
+//   Inactive = "INACTIVE",
+//   Pending = "PENDING"
+// }
+
+// let status: Status;
+// status = Status.Active;
+// console.log(status);
+
+
+
+
+
+// There is a special type ‘any’ which I don’t recommend to use, as it removes the benefits of TS typechecking:
+//
+//
+//
+//     But for you to know that it is available:
+//
+//
+//
+//     let name: any;
+//
+// name = 3.14;
+//
+// name = ‘Toronto’;
+//
+// name = [1, 2, 3];
+//
+//
+//
+// while if I had a type for my name, it will not let me break my code:
+//
+//
+//
+//     let name: string;
+//
+// name = 3.14;
+//
+
 
 
 

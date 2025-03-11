@@ -6,15 +6,6 @@
   <script>
     window.onload = () => {
 
-      // A few housekeeping items before we begin:
-      // Please make sure your microphones are muted.
-      // If you have any questions during the session,
-      // feel free to use the chat
-      // or raise your hand.
-
-      // while we are waiting for others to join,
-      // please, vote in the chat
-
 
 
 
@@ -192,11 +183,10 @@
 
 
 
-      // At the end of this course you will NOT:
-      // -- be a UI developer.
-      // -- know Angular.
+      // At the end of this course you will probably not:
+      // -- become a UI developer.
 
-      // All these things come only with practice.
+      // This come only with practice.
 
       // I hope that after this course you will:
       // -- get an idea of how UI works.
@@ -295,6 +285,7 @@
       // short notation
       // logical operators
       // optional chaining operator
+      // object destructuring
       // async vs sync
       // Promise
       // callback
@@ -426,8 +417,8 @@
       // 4) Consider scope when naming
       // i.e. how long will variable 'live'.
 
-      // -- Larger scope == longer name
-      // -- Smaller scope == shorter name
+      // -- Larger scope => longer name
+      // -- Smaller scope => shorter name
 
       // Large (Global) scope:
       // const maximumAllowedConnections = 100;
@@ -761,7 +752,7 @@
 
       // With const I can't:
       // -- declare it without initial value.
-      // -- reassign to primitive value (string, number, boolean).
+      // -- reassign to primitive value (string, number, boolean),
       //    new object or new array.
 
 
@@ -848,12 +839,12 @@
       // 2) Reassign const array
 
       // const numbers = [ 1, 2, 3, 4 ];
-      // numbers = [ 1, 2, 3, 4, 5 ]; // TypeError: Assignment to constant variable.
+      // numbers = [ 1, 2, 3, 4 ]; // TypeError: Assignment to constant variable.
 
       // 3) Reassign const object
 
       // const person = { name: 'Mark', age: 1 };
-      // person = { name: 'John', age: 2 }; // TypeError: Assignment to constant variable.
+      // person = { name: 'Mark', age: 1 }; // TypeError: Assignment to constant variable.
 
       // 4) Declare const without initial value
       // const country; // SyntaxError: Missing initializer in const declaration
@@ -990,7 +981,7 @@
 
       // const numbers = [1, 2, 3, 4];
       // for (let i = 0; i < numbers.length; i++) {
-      // 	console.log(numbers[i]);
+      //    console.log(numbers[i]);
       // }
 
 
@@ -2388,7 +2379,7 @@
       // Callback is:
 
       // function () {
-      // 	console.log('Button was clicked!');
+      //    console.log('Button was clicked!');
       // }
 
 

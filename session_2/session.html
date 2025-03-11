@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Session</title>
+  <script>
+    window.onload = () => {
+
+
+
+
+
+      // Plan
+
+      // Main topic: JavaScript.
+
+      // logical operators
+      // optional chaining operator
+      // object destructuring
+      // async vs sync
+      // Promise
+      // callback
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Logical Operators
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // && (AND)
+      // || (OR)
+
+
+
+
+
+
+
+
+
+
+
+
+      // && (AND)
+
+
+
+
+
+
+      // This operator evaluates the expression
+      // and returns:
+      // -- value of first falsy operand
+      // -- value of the last operand if all are truthy
+
+
+
+      // console.log("" && true); // output is empty string, not false, even if empty string is falsy
+      // console.log(0 && true); // 0
+      // console.log(1 < 2 && null); // null
+      // console.log(1 < 2 && undefined && false); // undefined
+      // console.log(1 && 2); // 2
+      // console.log(1 && 2 && 3 && 4 && -1); // -1
+      // console.log(1 < 2 && 'hi'); // 'hi'
+
+
+
+
+      // Short circuit.
+
+      // Important!
+      // && = will NEVER execute right-hand side
+      // if left-hand side is false
+
+      // console.log(false && 'you never see me');
+
+      // This feature allows me to write code like:
+
+      // const isLoggedIn = true;
+      // isLoggedIn && console.log('You are logged in');
+
+
+
+
+
+
+
+
+
+
+      // || (OR)
+
+
+
+
+
+
+      // This operator evaluates the expression
+      // and returns:
+      // -- value of first truthy operand
+      // -- value of the last operand if all are falsy
+
+
+      // console.log(1 || 2); // 1
+      // console.log(3 || true || []); // 3
+      // console.log(null || 'city'); // city
+      // console.log(false || 0 || '' || undefined); // undefined
+
+
+
+      // Short circuit.
+
+      // Important!
+      // || = will NEVER execute right-hand side
+      // if left-hand side is true
+
+      // console.log(true || 'you never see me');
+
+
+      // Important!
+      // On the other hand
+      // || = will ALWAYS execute right-hand side
+      // if left-hand side is false
+
+      // console.log(false || 'you always see me');
+
+
+      // This feature allows me to set default values like:
+
+      // const username = null;
+      // const name = username || "Default value: Guest";
+      // console.log(name);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // ?? (Nullish Coalescing)
+
+
+
+
+
+
+
+
+
+      // It is similar to || (OR) with one exception:
+      // it checks for null or undefined only
+      // while || checks for any falsy value.
+
+
+
+
+
+
+
+
+
+
+      // Example
+
+      // const name = null;
+      // const defaultName = "Guest";
+      // const result = name ?? defaultName;
+      // console.log(result); // Guest
+
+
+
+
+      // Difference between ?? and ||
+
+      // const count = 0;
+      // const result1 = count || 10;
+      // const result2 = count ?? 10;
+      // console.log(result1); // 10
+      // console.log(result2); // 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Optional chaining operator (?.)
+
+
+
+
+
+
+
+
+
+
+
+
+      // Allows reading the value of a property
+      // without validating that it exists.
+
+
+      // The problem:
+
+      // const user = { name: 'John' };
+      // console.log(user.address.city); // TypeError: Cannot read property 'city' of undefined
+
+      // One solution:
+
+      // const user = { name: 'John' };
+      // if (user.address) {
+      //   console.log(user.address.city);
+      // }
+      // user.address = { city: 'New York' };
+      // if (user.address) {
+      //   console.log(user.address.city);
+      // }
+
+
+      // Better way to do it:
+
+      // const user = { name: 'John' };
+      // console.log(user.address?.city); // undefined
+      // user.address = { city: 'New York' };
+      // console.log(user.address?.city); // New York
+
+
+
+
+
+
+
+
+
+
+
+
+      // We can use ?. with arrays
+
+
+      // The problem:
+
+      // const users = [ { name: 'John' }, { name: 'Jane' } ];
+      // console.log(users[2].name); // TypeError: Cannot read property 'name' of undefined
+
+      // The solution:
+
+      // const users = [ { name: 'John' }, { name: 'Jane' } ];
+      // console.log(users[2]?.name); // Output: undefined
+
+
+
+
+
+
+
+
+
+
+
+
+      // We can't use ?. on the left-hand
+      // side of expression
+
+
+
+
+
+
+
+
+
+
+      // let user = null;
+      // user?.name = 'John';  // SyntaxError: Invalid left-hand side in assignment.
+
+
+
+
+
+
+      // In this case we should
+      // explicitly check existence of
+      // the value with if condition
+
+
+
+
+
+
+
+
+
+
+
+
+      // let user = null;
+      //
+      // if (user) {
+      //   user.name = 'John';
+      // } else {
+      //   console.log('User is not defined');
+      // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Object destructuring
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Object destructuring is a powerful feature in JavaScript.
+      // It allows to extract properties from objects.
+      // And assign them to variables.
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Example
+
+      // const person = { name: 'Alice', age: 25, city: 'Wonderland' };
+      // const name = person.name;
+      // const age = person.age;
+      // const city = person.city;
+      // console.log(name); // 'Alice'
+      // console.log(age); // 25
+      // console.log(city); // 'Wonderland'
+
+
+
+      // Here I extracted values from the array and assigned
+      // them to corresponding values.
+
+
+
+
+
+
+
+
+
+
+      // I can do the same but in a concise way
+      // with Object destructuring:
+
+
+
+      // const person = { name: 'Alice', age: 25, city: 'Wonderland' };
+      // const { name, age, city } = person;
+      // console.log(name); // 'Alice'
+      // console.log(age); // 25
+      // console.log(city); // 'Wonderland'
+
+
+
+
+
+
+
+
+
+
+
+
+      // I may wish not to extract all properties,
+      // but only those which I need:
+
+      // const person = { name: 'Alice', age: 25, city: 'Wonderland' };
+      // const { age } = person;
+      // console.log(age); // 25
+
+
+
+
+
+
+
+
+
+
+
+
+      // I can set default values in case property doesn't exist
+
+      // const person = { name: 'Alice', age: 25, city: 'Wonderland' };
+      // const { age = 18, country = 'Unknown' } = person;
+      // console.log(age); // 25
+      // console.log(country); // 'Unknown'
+
+
+      // Default property will be used only if value
+      // is undefined.
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // const person = { name: 'Alice', age: null, city: 'Wonderland' };
+      // const { age = 18 } = person;
+      // console.log(age); // null
+
+
+      // Default property is not used because the value
+      // of 'age' property is not undefined.
+
+
+
+
+
+
+
+
+
+
+
+
+      // We can use destructuring in
+      // function parameters
+
+
+
+
+
+
+
+
+
+
+
+      // const person = { name: 'Alice', age: 25, city: 'Wonderland' };
+      //
+      // function greet({ name, age }) {
+      //     console.log(`Hello, ${name}! You are ${age} years old.`);
+      // }
+      //
+      // greet(person); // 'Hello, Alice! You are 25 years old.'
+
+
+
+
+
+
+
+
+
+
+      // You can't destructure null or undefined
+
+      // const { name } = null; // TypeError: Cannot destructure property 'name' of 'null'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Sync vs Async
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // In JavaScript tasks can be handled in two ways:
+
+      // -- Synchronously
+      // -- Asynchronously (async)
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Synchronous (Sync) means tasks happen one after another,
+      // in the order they are written.
+
+      // console.log("1");
+      // console.log("2");
+      // console.log("3");
+
+
+
+
+
+      // Asynchronous (Async) means tasks can happen
+      // at the same time, allowing the program to
+      // keep running without waiting for each task to finish.
+
+      // console.log("1");
+      // setTimeout(() => console.log("2"));
+      // console.log("3");
+
+
+      // Async behavior can be produced by:
+      // -- API calls
+      // -- event listeners
+      // -- timers
+
+
+
+
+
+
+
+
+
+
+      // When we talk about asynchronous
+      // we should mention two ways to handle it:
+
+      // -- Promise (http calls)
+      // -- Callbacks (event listeners)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Promise
+
+      // A Promise represents a value that will be available in the future.
+
+      // A Promise is a result of asynchronous operation.
+      // It can have two distinct states:
+
+      // -- resolve
+      // -- reject
+
+      // .then() - in case promise resolves (returns data)
+      // .catch() - in case promise is rejected (returns error)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // API example
+
+      // function getWeather() {
+      //     console.log("Start");
+      //     fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m')
+      //         .then(response => console.log('Response', response.json()))
+      //         .catch(error => console.log("Error:", error));
+      //     console.log("Finish");
+      // }
+      //
+      // getWeather();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Important to remember!
+
+      // Async is a fundamental part of the JavaScript.
+      // You don’t explicitly code for async behavior.
+      // You need to understand how async works.
+      // But it still will work even
+      // if you don't understand it ))
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Why async is used?
+
+      // We don’t want the program to freeze
+      // while waiting for long tasks like
+      // network requests or file reading.
+
+
+
+
+
+
+
+
+
+
+      // To make async function behave like synchronous
+      // we need to wait for its response using 'await'
+
+      // async - add this keyword before function definition
+      // await - add this keyword to async operation to wait for response
+
+
+
+
+
+
+
+
+
+
+      // Adding 'async' keyword to a function
+      // will make this function asynchronous
+      // and this function will always return a Promise.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Example
+
+      // Regular arrow function
+
+      // const example = () => 5;
+      // console.log(example());
+
+
+      // Async function returning Promise
+
+      // const example = async () => 5;
+      // console.log(example());
+
+
+
+
+      // Let's demonstrate the problem:
+
+      // const example = () => 5; // add async
+      // const result = example() + 1;
+      // console.log(result);
+
+
+      // To get actual result from async function
+
+      // const example = async () => 5;
+      // example().then(result => console.log(result));
+
+      // Or if I need to use that value:
+
+      // const example = async () => 5;
+      // example().then(val => {
+      //     const result = val + 1;
+      //     console.log(result);
+      // })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Let's make async to behave like sync
+
+      // async function getWeather() {
+      //     console.log("Start");
+      //     const result = await fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m')
+      //         .then(response => response.json())
+      //         .catch(error => console.log("Error:", error));
+      //     console.log(result);
+      //     console.log("Finish");
+      // }
+      //
+      // getWeather();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Callback
+
+      // A special function attached to event
+      // when we listen to this event.
+
+
+
+
+
+
+
+
+
+
+
+      // Example of Callback
+
+      // document.querySelector('button').addEventListener('click', function () {
+      //     console.log('Button was clicked!');
+      // });
+
+      // Callback is:
+
+      // function () {
+      //    console.log('Button was clicked!');
+      // }
+
+
+      // We wait for event to happen to execute our code.
+      // Our program continues to run without waiting
+      // for button click to occur.
+
+
+
+
+
+
+
+
+
+
+      // Callback can have a name:
+
+      // const handleClick = () => console.log('Click event happened');
+      // document.querySelector('button').addEventListener('click', handleClick);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Thank you!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

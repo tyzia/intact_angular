@@ -14,8 +14,10 @@
 
       // Main topic: JavaScript.
 
+      // feedback from previous session
       // logical operators
       // optional chaining operator
+      // spread operator
       // object destructuring
       // async vs sync
       // Promise
@@ -26,6 +28,63 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Feedback
+
+
+
+
+
+
+
+
+
+      // I would like to thank all of you
+      // who sent me your feedback.
+      // It is super valuable for me.
+
+
+
+
+
+
+
+
+
+
+
+
+      // 1) github link. I have provided in the chat
+
+      // 2) more examples
+
+
+
+
+
+
+
+
+
+
+
+      // Going forward I will try to show
+      // you examples of what we learn
+      // in our CCL2 application
 
 
 
@@ -69,6 +128,15 @@
 
 
 
+      // Surprisingly, but these operators
+      // may be used not only inside of if conditions.
+
+
+
+
+
+
+
 
 
 
@@ -84,6 +152,21 @@
       // and returns:
       // -- value of first falsy operand
       // -- value of the last operand if all are truthy
+
+
+
+
+
+      // operands:
+
+      // Example:
+      // A && B
+
+      // Here operands are A and B
+
+
+
+
 
 
 
@@ -110,6 +193,12 @@
 
       // const isLoggedIn = true;
       // isLoggedIn && console.log('You are logged in');
+
+
+
+      // CCL2 Example:
+      // https://githubifc.iad.ca.inet/ContactCL/cbfq-rg-appstatic/blob/221f0651562dbd69730c14803696e3fa65b7dffe/projects/cbfq-appstatic/src/app/modules/navigation/services/navigation.service.ts#L215
+
 
 
 
@@ -166,6 +255,10 @@
 
 
 
+      // CCL2 Examples:
+
+      // https://githubifc.iad.ca.inet/ContactCL/cbfq-rg-appstatic/blob/221f0651562dbd69730c14803696e3fa65b7dffe/projects/cbfq-appstatic/src/app/modules/offer/services/offer.service.ts#L449
+      // https://githubifc.iad.ca.inet/ContactCL/cbfq-rg-appstatic/blob/221f0651562dbd69730c14803696e3fa65b7dffe/projects/cbfq-appstatic/src/app/modules/add-coverage/components/add-coverages-dialog/add-coverages-dialog.component.ts#L370
 
 
 
@@ -219,6 +312,9 @@
       // console.log(result2); // 0
 
 
+
+      // CCL2 Example:
+      // https://githubifc.iad.ca.inet/ContactCL/cbfq-rg-appstatic/blob/221f0651562dbd69730c14803696e3fa65b7dffe/projects/cbfq-appstatic/src/app/modules/bind/services/bind.service.ts#L123
 
 
 
@@ -279,6 +375,9 @@
 
 
 
+      // CCL2 Example:
+      // https://githubifc.iad.ca.inet/ContactCL/cbfq-rg-appstatic/blob/221f0651562dbd69730c14803696e3fa65b7dffe/projects/cbfq-appstatic/src/app/modules/automated-quote/components/automated-quote-in-progress-page/automated-quote-in-progress-page.component.ts#L250
+
 
 
 
@@ -302,6 +401,9 @@
 
 
 
+
+      // CCL2 Example:
+      // https://githubifc.iad.ca.inet/ContactCL/cbfq-rg-appstatic/blob/221f0651562dbd69730c14803696e3fa65b7dffe/projects/cbfq-appstatic/src/app/services/adobe-analytics.service.ts#L75
 
 
 
@@ -353,6 +455,226 @@
       // } else {
       //   console.log('User is not defined');
       // }
+
+
+
+
+
+
+
+
+
+
+
+
+      // Spread operator (...)
+
+
+
+
+
+
+
+
+
+
+
+
+      // The spread operator (...) is a cool feature in JavaScript
+      // that allows you to expand elements of an iterable
+      // (like an array or object) into individual elements.
+      // In other words "to copy" elements of an array or object.
+
+
+
+
+
+
+
+
+
+      // Syntax:
+      // [ ...array ]
+      // { ...object }
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Examples:
+
+
+
+      // Copying arrays
+
+      // I need to copy elements of the original array
+      // into a new array.
+
+
+
+      // One way - to loop over original array
+      // and push each element into a new array
+
+      // const originalArray = [1, 2, 3];
+      // const copiedArray = [];
+      // for (let i = 0; i < originalArray.length; i++) {
+      //   copiedArray.push(originalArray[i]);
+      // }
+      // console.log(copiedArray); // [1, 2, 3]
+
+
+
+
+
+
+
+      // Other way - to use .slice()
+
+      // const originalArray = [1, 2, 3];
+      // const copiedArray = originalArray.slice();
+      // console.log(copiedArray); // [1, 2, 3]
+
+
+
+
+
+
+
+      // With spread (...) operator:
+
+      // const originalArray = [1, 2, 3];
+      // const copiedArray = [ ...originalArray ];
+      // console.log(copiedArray); //[1, 2, 3]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Merging arrays
+
+      // const array1 = [1, 2, 3];
+      // const array2 = ['a', 'b', 'c'];
+      // console.log([ ...array1, ...array2 ]); // [1, 2, 3, 'a', 'b', 'c']
+
+
+
+
+      // Copying objects
+
+      // const originalObject = { name: 'John', age: 25 };
+      // const duplicateObject = { ...originalObject };
+      // console.log(duplicateObject); // { name: 'John', age: 25 }
+
+
+
+
+
+
+      // Merging objects
+
+      // const object1 = { a: 1, b: 2 };
+      // const object2 = { c: 3, d: 4 };
+      // const mergedObject = { ...object1, ...object2 };
+      // console.log(mergedObject); // { a: 1, b: 2, c: 3, d: 4 }
+
+
+
+
+
+
+      // We can do more cool staff with spread operator
+
+
+
+
+      // Add elements to array
+
+      // Example:
+
+      // const array = [1, 2, 3];
+      // const newArray = [0, ...array, 4];
+      // console.log(newArray); // [0, 1, 2, 3, 4]
+
+
+
+
+
+
+
+      // Pass arguments to a function
+
+      // Example:
+
+      // const sum = (a, b, c) => a + b + c;
+      // const numbers = [1, 2, 3];
+      // console.log(sum(numbers[0], numbers[1], numbers[2])); // 6
+      // console.log(sum(...numbers)); // 6
+
+
+
+
+
+
+
+      // What do you think will happen here?
+
+      // const sum = (a, b, c) => a + b + c;
+      // const numbers = [1, 2, 3, 4];
+      // console.log(sum(...numbers)); // 6
+
+
+
+
+
+
+
+
+
+      // And here?
+
+      // const sum = (a, b, c) => a + b + c;
+      // const numbers = [ 1 ];
+      // console.log(sum(...numbers)); // NaN
+
+
+
+
+
+      // We can pass more arguments than needed
+      // to the function, but if we pass
+      // less arguments, unexpected results can happen.
+
+
+
+
+
+
+
+
+
+
+      // CCL2 Examples
+      // https://githubifc.iad.ca.inet/ContactCL/cbfq-rg-appstatic/blob/be621c225d7cc0f1df688c64249d699cbae0dcff/projects/cbfq-appstatic/src/app/modules/credit-check/components/business-search-results/business-search-results.component.ts#L104
+      // https://githubifc.iad.ca.inet/ContactCL/cbfq-rg-appstatic/blob/be621c225d7cc0f1df688c64249d699cbae0dcff/projects/cbfq-appstatic/src/app/modules/risk-exposure/components/entertainment/entertainment.component.ts#L339
+
 
 
 
@@ -436,6 +758,39 @@
       // console.log(age); // 25
       // console.log(city); // 'Wonderland'
 
+
+
+
+
+
+
+
+
+      // I can give my variables other names while destructuring:
+
+      // const person = { name: 'Alice', age: 25, city: 'Wonderland' };
+      // const { name: personName, age: personAge } = person;
+      // console.log(personName); // 'Alice'
+      // console.log(personAge); // 25
+
+
+
+      // This is essentially the same as:
+
+      // const person = { name: 'Alice', age: 25, city: 'Wonderland' };
+      // const personName = person.name;
+      // const personAge = person.age;
+      // console.log(personName); // 'Alice'
+      // console.log(personAge); // 25
+
+
+
+
+
+
+      // CCL2 Example:
+
+      // https://githubifc.iad.ca.inet/ContactCL/cbfq-rg-appstatic/blob/6b5f74ee1aa18a168e7d18392d450a9d0e6e8b54/projects/cbfq-appstatic/src/app/modules/underwriter-questions/underwriter-questions.constants.ts#L3
 
 
 
@@ -543,6 +898,72 @@
 
 
 
+
+
+
+
+      // CCL2 Examples:
+      // https://githubifc.iad.ca.inet/ContactCL/cbfq-rg-appstatic/blob/221f0651562dbd69730c14803696e3fa65b7dffe/projects/cbfq-appstatic/src/app/modules/bind/components/bind-payment-details/bind-payment-details.component.ts#L67
+      // https://githubifc.iad.ca.inet/ContactCL/cbfq-rg-appstatic/blob/6b5f74ee1aa18a168e7d18392d450a9d0e6e8b54/projects/cbfq-appstatic/src/app/modules/underwriter-questions/components/questions-list/questions-list.component.ts#L6
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Shorthand syntax to create objects
+
+
+
+
+
+
+
+      // Regular way to create an object
+
+
+
+      // const person = { income: '1000',  name: 'John' };
+      // console.log(person); // { income: '1000',  name: 'John' }
+
+
+
+
+
+
+
+
+      // Other way:
+
+      // const income = '1000';
+      // const name = 'John';
+      // const person = { income: income, name: name };
+      // console.log(person); // { income: '1000',  name: 'John' }
+
+
+
+
+
+
+
+      // Shorthand notation
+
+      // const income = '1000';
+      // const name = 'John';
+      // const person = { income, name };
+      // console.log(person); // { income: '1000',  name: 'John' }
+
+
+
+      // CCL2 Example:
+      // https://githubifc.iad.ca.inet/ContactCL/cbfq-rg-appstatic/blob/6b5f74ee1aa18a168e7d18392d450a9d0e6e8b54/projects/cbfq-appstatic/src/app/modules/underwriter-questions/underwriter-questions.constants.ts#L15
 
 
 

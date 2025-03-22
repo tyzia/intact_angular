@@ -14,6 +14,9 @@
 
 // Typescript
 
+// Types
+// Interfaces
+
 
 
 
@@ -498,11 +501,6 @@
 
 
 
-// (move)
-// One more thing to note – I can’t use ?. (optional chaining) operator here, because it is left-hand side.
-//
-//     Paragraph?.innerHTML = message; // will not work
-
 
 
 // Now let’s run compiler again:
@@ -622,7 +620,7 @@
 
 // const message: string = "Hello, you clicked the button!";
 
-// I can add type to for the return of my function,
+// I can add type for the return of my function,
 // in this case it doesn’t return anything,
 // I will add void
 
@@ -641,58 +639,370 @@
 // - number
 // - boolean
 
-// const pi: number = 3.14;
-// const isDisabled: boolean = true;
 
 
 
-// I can specify the types of my arrays:
-
-// const nums: number[] = [1, 2, 3];
 
 
-// TS allows us to have enums:
+// Switch to 1/script_ts.ts for demo
 
-// enum Status {
-//   Active = "ACTIVE",
-//   Inactive = "INACTIVE",
-//   Pending = "PENDING"
+
+
+
+
+
+
+
+// Let's quickly discuss the idea of a contract.
+
+
+
+
+
+// When we integrate the backend with the frontend,
+// we usually talk about a "contract." This means
+// that if I, from the UI, call a specific endpoint,
+// it will return a specific type or shape of data.
+// This is what we refer to as a 'contract.'
+// I will trust this contract in the UI and expect
+// to receive this type of data from the endpoint.
+
+// The same approach applies in the other direction—
+// when I intend to send something from the UI to the backend,
+// we again discuss the type of data the backend is ready to consume,
+// and this becomes our "contract."
+
+// The word "contract" in this context means that
+// it is something we (the UI and backend) have agreed upon
+// and should not change or violate.
+
+
+
+
+
+
+// TypeScript plays an important role in setting up
+// these contracts in the UI because JavaScript doesn't have types.
+
+
+
+
+
+
+// TypeScript:
+
+// -- introduced static typing (JS doesn't have it).
+// -- allows to explicitly define the shape of data
+// -- ensures that the data adheres to that structure at compile time.
+
+
+
+
+
+
+
+// Let's focus not on endpoints, but on internal
+// usage of types and concept of a contract.
+
+// It will not happen between UI and backend.
+// It will happen between two lines of my own code.
+
+
+
+
+
+// Syntax to define a type in Typescript
+
+
+// variable name : typeName
+
+// For example:
+
+// let age: number; // variable 'age' with type 'number'
+// let city: string; // type string
+// let isActive: boolean; // type boolean
+
+
+
+
+
+
+// Example
+// I decided that I will be working with number type
+
+// I define my contract:
+
+// let age: number;
+
+
+// I say "this variable 'age' will accept only numbers"
+
+// next I will create a method to generate age:
+
+// function generateAge(): number {
+//  return 18;
 // }
 
-// let status: Status;
-// status = Status.Active;
-// console.log(status);
+
+// Last but not least, I will assign value to my
+// variable based on the method:
+
+// age = generateAge();
+// console.log(age);
+
+
+
+// Let's compile this code (> npx tsc)
+// and check index_ts.html in browser
+
+
+
+
+// Let's break things:
+//(in script_ts.ts)
+
+// code:
+
+// let age: number; // 3) change to boolean
+// function generateAge(): number { // 2) change to 'string'
+//  return 18; // 1) change to '18'
+// }
+// age = generateAge();
+// age += 1;
+// console.log(age);
+
+// 1) Change return from 18 to '18'
+// TS will show an error.
+// the same error will be: > npx tsc
+// error TS2322: Type 'string' is not assignable to type 'number'.
+
+
+
+// 2) Change return type from number to string
+// TS will show an error.
+
+
+// 3) Change variable type from number to boolean
+// TS will show an error.
 
 
 
 
 
-// There is a special type ‘any’ which I don’t recommend to use, as it removes the benefits of TS typechecking:
+
+
+
+// Let's do the same in JS:
+//(in script.js)
+
+// 1) Change return from 18 to '18'
+// No error and result '181' (((
+
+
+
+
+
+
+
+
+
+// If I do need to make a change
+// I will update contract everywhere:
+//(in script_ts.ts)
+
+// code
+
+// let age: string;
+// function generateAge(): string {
+//  return 'hello';
+// }
+// age = generateAge();
+// age += ' world';
+// console.log(age);
+
+
+
+
+
+
+
+
+
+
+
+// I can have contract with function parameters:
+// (in script_ts.ts)
+
+// function isValid(isActive: boolean): void {
+//     const isTruthy: boolean = isActive;
+// }
+// isValid(true);
+
+
+
+
+
+
+
+
+
+
+// To recap I had a contract:
+
+// -- when defined a variable type
+// -- when defined function return type
+// -- when was returning a value
+// -- when defined function parameters
+
+
+
+
+
+
+
+
+
+
+// Array types
+
+
+
+
+
+
+
+
+
+// Same way as we had primitive types
+// (number, boolean, string)
+// we can have array with these types.
+
+
+// Example
+//(in script_ts.ts)
+
+// const nums: number[] = [1, 2, 3];
+// const letters: string[] = ['a', 'b', 'c'];
+// const booleans: boolean[] = [true, false, false];
+
+
+
+
+
+
+
+
+
+
+// Now let's talk about more complex types
+
+
+
+
+
+
+
+
+// Define a shape for objects:
+
+// interface Person {
+//     name: string;
+//     age: number;
+// }
+// let person: Person = { name: "John", age: 30 };
+
+
+
+
+
+
+
+
+
+
+// any
+
+
+
+
+
+
+
+
+// type any removes the benefits of TS typechecking.
+
+
+
+
+
+
+// 1) Causes run-time errors
+
+
+
+
+
+
+// Example
+//(in script_ts.ts)
+
+// let data: any = "Hello, World!";
+// data = 42; // No error
+// console.log(data.toUpperCase()); // Runtime error: toUpperCase is not a function
+
+// Here TS couldn't prevent my app from crashing (((
+// All because of 'any' type.
+
+
+
+
+
+
+
+
+
+// 2) Allows unexpected results
+
+
+// Example
+//(in script_ts.ts)
+
+// function add(a: any, b: any) {
+//     return a + b;
+// }
 //
-//
-//
-//     But for you to know that it is available:
-//
-//
-//
-//     let name: any;
-//
-// name = 3.14;
-//
-// name = ‘Toronto’;
-//
-// name = [1, 2, 3];
-//
-//
-//
-// while if I had a type for my name, it will not let me break my code:
-//
-//
-//
-//     let name: string;
-//
-// name = 3.14;
-//
+// console.log(add(5, 10)); // 15
+// console.log(add("5", 10)); // 510
+
+// Here TS couldn't prevent my app from unexpected result (((
+// All because of 'any' type.
+
+
+
+
+
+
+
+
+// More "bad" results:
+
+// -- code less readable
+
+// function processData(data: any) {
+//   ...
+// }
+
+// What is `data`? A string? An object? A number? Who knows!
+
+
+
+// -- no Autocompletion or Intellisense
+
+
+
+
+
+// Don't use 'any' type.
 
 
 
@@ -709,103 +1019,6 @@
 
 
 
-// Ok, let's create TS file
-
-// > vim script.ts
 
 
 
-
-
-
-
-
-
-
-
-
-
-/*
-TypeScript compiles .ts files into .js files.
-    Converting JS to TS
-
-Rename .js file to .ts and start adding types to variables and functions.
-    Core TypeScript Concepts (45 minutes)
-1. Types and Type Annotations (10 minutes)
-Primitive Types (String, Number, Boolean, Null, Undefined, Symbol, BigInt)
-
-Example: let name: string = "Alice";
-Compare to JavaScript, where variables don’t have a type until runtime.
-    Arrays and Tuples
-
-Arrays with explicit types: let nums: number[] = [1, 2, 3];
-Tuples: Fixed-length arrays with specific types for each element:
-    let person: [string, number] = ["Alice", 30];
-Enums
-
-Example: enum Color { Red, Green, Blue };
-Can make the code more readable by using symbolic names.
-    Any Type
-
-any allows a variable to hold any type: let value: any = "Hello";
-Warn students that overusing any reduces the benefits of TypeScript.
-2. Interfaces and Types (10 minutes)
-Interfaces
-
-Define a shape for objects:
-typescript
-Copy
-interface Person {
-  name: string;
-  age: number;
-}
-let person: Person = { name: "Alice", age: 30 };
-Type Aliases
-
-Alternative to interfaces, can be used to define more complex types:
-    typescript
-Copy
-type Coordinates = { x: number, y: number };
-let point: Coordinates = { x: 10, y: 20 };
-Function Signatures
-
-Type-checking for function parameters and return values:
-typescript
-Copy
-function greet(name: string): string {
-  return `Hello, ${name}`;
-}
-3. Union Types (5 minutes)
-Union Types allow variables to accept multiple types:
-
-    typescript
-Copy
-let value: string | number = "Hello";
-value = 10; // Valid
-Example: Function that accepts multiple types:
-
-    typescript
-Copy
-function display(value: string | number) {
-  console.log(value);
-}
-4. Type Inference (5 minutes)
-Type Inference allows TypeScript to automatically infer the type based on the value assigned:
-
-    typescript
-Copy
-let x = 5; // TypeScript infers x as a number
-Demonstrate how TypeScript infers types and when it might need explicit annotations.
-
-5. Generics (5 minutes)
-What are Generics?
-    Generics allow you to create reusable components that work with any data type.
-    Example: Generic function
-typescript
-Copy
-function identity<T>(arg: T): T {
-  return arg;
-}
-let result = identity(5); // result is of type number
-
- */

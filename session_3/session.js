@@ -17,6 +17,12 @@
 // Types
 // Interfaces
 
+// CSS
+// DevTools
+// Specificity
+// elements, ids, classes
+// Inheritance
+
 
 
 
@@ -1012,6 +1018,314 @@
 
 
 
+
+
+
+
+
+
+
+// CSS
+
+// Cascading Style Sheets
+
+
+
+
+
+
+
+// We use css to style the html page.
+
+
+
+// The most important in CSS is 'cascading' word.
+
+// It means that if there are conflicting style rules
+// the last one wins. Or the rules are applied as a cascade.
+
+// By conflicting I mean styles with the same specificity.
+
+
+
+
+// Example CSS:
+
+// p { color: red; }
+// p { color: blue; }
+// p { color: yellow; }
+
+
+
+// Here I have three style rules.
+// All set font color of a paragraph 'p'.
+// Final color will be 'yellow'
+// because it is the last in the queue.
+
+
+// These styles are considered 'conflicting'
+// because they have the same specificity.
+
+// If specificity of style rules is the same
+// the latest rule will be applied.
+
+
+
+
+
+
+// demo
+// (in css/css.html)
+
+// - how to inspect DOM
+// - how to interpret CSS styles
+// - topmost css rule in the list - the one which is applied
+// - crossed out css rule = overridden
+// - uncheck one by one and show how color changes
+// - uncheck everything and still color is black (default)
+// - show Computed tab
+// - show how to add styles in browser (color: purple, color: white)
+// - show how to update existing css rule value
+// - show how to add more styles to existing rule (font-size)
+// - show how to delete elements from DOM
+// - show how to 'hide' elements in DOM ('h)
+// - show how to add elements to DOM (Edit as HTML) (<strong>bold text</strong>)
+// - show how to edit text of element
+// - show what is margin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// What is specificity
+
+
+
+
+
+
+
+
+
+// In devtools if you hover over the rule
+// p { color: red; }
+
+// You will see Specificity: (0, 0, 1)
+
+
+
+
+
+
+
+
+// Specificity determines which rule is more specific
+// and thus takes precedence.
+// Specificity is calculated based on the types of selectors used.
+
+
+
+// Specificity is set in three positions:
+
+// (0, 0, 0)
+
+// or
+
+// (id, class, element)
+
+
+
+
+
+
+// ID - is the most important:
+
+// (1,0,0) > (0,0,9)
+// (1,0,0) > (0,9,9)
+// (1,0,0) > (0,99999,99999)
+
+
+
+// CLASS - is second most important:
+
+// (0,1,0) > (0,0,9)
+// (0,1,0) > (0,0,999999)
+
+
+
+// ELEMENT - is the least important:
+
+// (0,0,0) - will never happen
+
+// (0,0,1) vs (0,0,1) - the last will win
+// (0,0,2) > (0,0,1)
+// (0,0,3) > (0,0,2)
+
+
+
+
+
+
+
+
+
+
+
+
+// Example of specificity of an element:
+
+// p { color: black; } // (0,0,1)
+// img { width: 100%; } // (0,0,1)
+// h1 { padding: 24px; } // (0,0,1)
+
+// In all these examples:
+
+// 0 for ids
+// 0 for classes
+// 1 for elements
+
+
+
+// Example of specificity other than 1
+
+// div p { color: black; } // (0,0,2)
+// div section p { color: black; } // (0,0,3)
+
+
+
+
+
+// Why specificity matters?
+
+
+
+
+// div p { color: red; } // (0,0,2)
+// p { color: black; } // (0,0,1)
+
+
+// demo (css/specificity.html)
+
+
+
+
+
+
+// css syntax: div p { ... }
+// means: paragraph inside div
+
+// this rule will not be applied to
+// paragraphs outside div.
+// The rule selector must match the DOM element.
+
+
+
+
+
+
+
+
+
+// Example of specificity 0,1,0
+
+
+// .myClass { color: blue; } // (0,1,0)
+
+// 0 for ids
+// 1 for classes
+// 0 for elements
+
+
+
+
+// We use dot (.) to specify a class in CSS
+
+
+
+
+
+
+
+// Example of specificity 0,1,1
+
+
+// .myClass p { color: purple; } // (0,1,1)
+
+// 0 for ids
+// 1 for classes
+// 1 for elements
+
+
+
+
+
+
+
+
+
+
+
+
+// Inheritance
+
+
+
+
+// demo
+
+// (specificity.html)
+
+// Uncheck all styles for .myClass p and its color
+// will remain blue
+
+// Because CSS uses inheritance.
+// Child elements inherit styles from parent.
+
+
+
+
+
+
+
+
+// Example of specificity 1,0,0
+
+
+// #myId { color: blue; } // (1,0,0)
+
+// 1 for ids
+// 0 for classes
+// 0 for elements
+
+
+
+
+// We use dot (#) to specify a id in CSS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// CSS rules are applied to HTML elements based on a hierarchy of specificity, source order, and importance. This cascading behavior determines which styles take precedence when multiple rules conflict.
 
 
 

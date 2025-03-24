@@ -1,0 +1,66 @@
+
+
+// Example of interface
+
+// Let's imagine we agreed that backend
+// will return User object to the UI with the
+// following properties:
+
+// id (number)
+// name (string)
+// isActive (boolean)
+
+
+// Based on this I will create a "contract"
+// of interface in TS:
+
+
+
+
+
+// interface User {
+//     id: number;
+//     name: string;
+//     isActive: boolean;
+// }
+
+
+
+// Now when I fetch data from endpoint
+// I will use my interface:
+
+
+
+// let response: User;
+// const fetchData = async (): Promise<User> => {
+//   const result = await fetch('/some/api/');
+//   const data = await result.json();
+//   return data as User;
+// }
+
+// fetchData().then(data => response = data).catch(err => console.log(err));
+
+
+// const fetchData = () => {
+//     fetch('/some/api/')
+//         .then((result) => result.json()) // Parse the JSON
+//         .then((data) => {
+//             console.log(data); // Logs the parsed JSON object
+//         })
+//         .catch((err) => {
+//             console.error('Error:', err);
+//         });
+// };
+
+
+
+
+
+// Example function to fetch user data from the backend
+// async function fetchUser(userId: number): Promise<User> {
+//     const response = await fetch(`/api/users/${userId}`);
+//     const data = await response.json();
+//
+//     // Assuming the backend adheres to the contract
+//     return data as User;
+// }

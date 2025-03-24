@@ -145,7 +145,7 @@
 
 
 
-// demo
+// demo in browser
 
 
 
@@ -172,7 +172,7 @@
 // First, let's check if I have TypeScript installed:
 
 
-// tsc -v
+// > tsc -v
 
 // -bash: tsc: command not found
 // That means TypeScript is not installed.
@@ -212,23 +212,16 @@
 
 // let's initialise npm project
 
-
-
-
-
-
-// I could do it with 'npm init' command
-// but let me show how to do that manually
+// > npm init -y
 
 
 
 
 
 
-// All I need is to create package.json file
+
+// This will create package.json file
 // with this content:
-
-
 
 
 // {
@@ -312,7 +305,7 @@
 
 // If I want to use TS in local project I need npx:
 
-// npx tsc -v
+// > npx tsc -v
 
 
 
@@ -361,7 +354,7 @@
 // I can run this command:
 // > npx tsc --init
 
-// Or I can create my tsconfig.json manually:
+// This will create tsconfig.json file:
 
 // {
 //     "compilerOptions": {
@@ -1009,6 +1002,33 @@
 
 
 // Don't use 'any' type.
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Example of type in landing project:
+
+// https://githubifc.iad.ca.inet/ContactCL/cl-landing-page-appstatic/blob/6e6bc7cd400bfac4c28854a7bb0456cfcd61dea0/src/app/shared/services/adobe-analytics.service.ts#L70
+
+
+
+// Example of type in CCL2 project:
+
+// https://githubifc.iad.ca.inet/ContactCL/cbfq-rg-appstatic/blob/cc8c95675ba5249f084ab341df27a0c1754a85d3/projects/cbfq-appstatic/src/app/modules/underwriter-questions/components/underwriter-question/underwriter-question.component.ts#L26
+
+
+
+
+
 
 
 

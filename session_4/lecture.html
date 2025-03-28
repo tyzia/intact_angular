@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lecture</title>
+    <style>
+/*
+
+
+
+        
+        Plan
+
+
+        CSS
+
+
+
+
+
+
+
+
+
+        Cascading Style Sheets
+
+
+
+
+
+
+
+        We use css to style the html page.
+
+        The most important in CSS is 'cascading' word.
+        It means that if there are conflicting style rules
+        the last one wins. Or the rules are applied as a cascade.
+        By conflicting I mean styles with the same specificity.
+
+
+
+
+
+
+
+
+
+        Example CSS:
+           p { color: red; }
+           p { color: blue; }
+           p { color: yellow; }
+
+
+
+
+
+
+
+        Here I have three style rules.
+        All set font color of a paragraph 'p'.
+        Final color will be 'yellow'
+        because it is the last in the queue.
+
+        These styles are considered 'conflicting'
+        because they have the same specificity.
+
+        If specificity of style rules is the same
+        the latest rule will be applied.
+
+
+
+
+
+
+        demo
+           (in css/css.html)
+
+           - how to inspect DOM
+           - how to interpret CSS styles
+           - topmost css rule in the list - the one which is applied
+           - crossed out css rule = overridden
+           - uncheck one by one and show how color changes
+           - uncheck everything and still color is black (default)
+           - show Computed tab
+           - show how to add styles in browser (color: purple, color: white)
+           - show how to update existing css rule value
+           - show how to add more styles to existing rule (font-size)
+           - show how to delete elements from DOM
+           - show how to 'hide' elements in DOM ('h)
+           - show how to add elements to DOM (Edit as HTML) (<strong>bold text</strong>)
+           - show how to edit text of element
+           - show what is margin
+
+
+
+
+
+
+        CSS Syntax:
+
+        tags
+
+
+
+        If I want to target an element,
+        I can use element tag name:
+
+        HTML: <p> text here </p>
+        CSS: p { ... }
+
+        HTML: <button> click me </button>
+        CSS: button { ... }
+
+        HTML: <button> <span> click me </span> </button>
+        CSS: button span { ... }
+
+
+
+        classes
+
+        If I want to target an element
+        I can use its class name with dot (.)
+
+        HTML: <p class="red"> text here </p>
+        CSS: .red { ... }
+
+        HTML: <button class="main"> <span class="child"> click me </span> </button>
+        CSS: .main .child { ... }
+
+
+
+
+        ids
+
+        If I want to target an element
+        I can use its id name with hash (#)
+
+        HTML: <p id="redText"> text here </p>
+        CSS: #redText { ... }
+
+
+
+
+        I can combine selectors:
+
+        HTML: <button class="main">
+                <p class="child">
+                    <p>click me</p>
+                </p>
+             </button>
+
+        CSS: button.main .child p { ... }
+
+
+
+
+
+
+
+
+
+
+        What is specificity?
+
+
+
+
+
+        Specificity - is the way to decide
+        which CSS rule is more important
+        when different rules target the same
+        element.
+
+
+        This importance is marked with a weight.
+
+        Each css rule has its own specificity
+        weight calculated by the browser.
+
+        The rule with the highest specificity
+        weight will be applied to the element.
+
+        If specificity is the same, then the
+        same cascading effect will happen -
+        the latest in CSS file will be applied.
+
+
+
+
+
+
+
+
+        How specificity is calculated?
+
+
+        Specificity is calculated based on
+        the types of selectors used.
+
+        We can use:
+
+        1) id (#phoneNumber)
+        2) class (.phone)
+        3) element (<section>)
+
+
+
+
+
+
+        Specificity has this format:
+
+        (id, class, element)
+
+
+
+
+
+
+        If my CSS rule has element selector:
+
+        HTML:
+        <p> This text should be red </p>
+
+        CSS:
+        p { color: red; }
+
+        its specificity will be:
+
+        (0, 0, 1)
+
+        0 - for zero id selectors
+        0 - for zero class selectors
+        1 - for one element selector (<p>)
+
+
+        I can increase specificity of this rule
+        by adding class to it:
+
+        HTML:
+        <p class="danger"> This text should be red </p>
+
+        CSS:
+        p.danger { color: red; }
+
+        its specificity now will be:
+
+        (0, 1, 1)
+
+        0 - for zero id selectors
+        1 - for one class selector (.danger)
+        1 - for one element selector (<p>)
+
+
+        As you may assume, I can continue
+        to increase my specificity:
+
+        I will add id to it:
+
+        HTML:
+        <p class="danger" id="dangerText"> This text should be red </p>
+
+        CSS:
+        p#dangerText.danger { color: red; }
+
+        its specificity now will be:
+
+        (1, 1, 1)
+
+        1 - for one id selector (#dangerText)
+        1 - for one class selector (.danger)
+        1 - for one element selector (<p>)
+
+
+        One thing to note: I must match
+        my ids, classes and elements in the HTML
+        with CSS selector, otherwise my style
+        will not be applied to this element.
+
+
+        For example
+
+        I missed id in html:
+
+        HTML (no #dangerText):
+        <p class="danger"> This text should be red </p>
+
+        CSS (#dangerText is still present in the rule):
+        p#dangerText.danger { color: red; }
+
+        This CSS rule will not be applied to my
+        paragraph text.
+
+
+
+
+        I can add more than one class to the element
+        or list parent classes to increase specificity:
+
+
+        HTML:
+        <section>
+            <button class="danger-button">
+                <span class="danger-text">
+                    I am dangerous
+                </span>
+            </button>
+        </section>
+
+
+        CSS:
+        span { color: red; } -> (0,0,1)
+        .danger-text { color: red; } -> (0,1,0)
+        span.danger-text { color: red; } -> (0,1,1)
+        button span.danger-text { color: red; } -> (0,1,2)
+        button.danger-button span.danger-text { color: red; } -> (0,2,2)
+        section button.danger-button span.danger-text { color: red; } -> (0,2,3)
+
+
+        (0,0,1) < (0,1,0)
+        (0,0,9) < (0,1,0)
+        (0,1,0) < (0,1,1)
+
+
+        I can add many elements
+        but if conflicting rule will have
+        just one class in it, my
+        rule will many element will
+        still lose this battle ((
+
+        Example:
+        section button span { color: red; } (0,0,3)
+        .danger-text { color: blue; } (0,1,0)
+
+        The final result will be: blue.
+        blue (0,1,0) > red (0,0,3)
+ */
+
+
+
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+ */
+        ID - is the most important:
+
+           (1,0,0) > (0,0,9)
+           (1,0,0) > (0,9,9)
+           (1,0,0) > (0,99999,99999)
+
+        CLASS - is second most important:
+
+           (0,1,0) > (0,0,9)
+           (0,1,0) > (0,0,999999)
+
+        ELEMENT - is the least important:
+
+           (0,0,0) - will never happen
+
+           (0,0,1) vs (0,0,1) - the last will win
+           (0,0,2) > (0,0,1)
+           (0,0,3) > (0,0,2)
+
+
+
+        How to see specificity?
+
+        In devtools if you hover over the rule
+           p { color: red; }
+
+        You will see Specificity: (0, 0, 1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Example of specificity other than 1
+
+           div p { color: black; } // (0,0,2)
+           div section p { color: black; } // (0,0,3)
+
+        Why specificity matters?
+
+           div p { color: red; } // (0,0,2)
+           p { color: black; } // (0,0,1)
+
+           demo (css/specificity.html)
+
+        css syntax: div p { ... }
+           means: paragraph inside div
+
+           this rule will not be applied to
+           paragraphs outside div.
+           The rule selector must match the DOM element.
+
+         Example of specificity 0,1,0
+
+           .myClass { color: blue; } // (0,1,0)
+
+           0 for ids
+           1 for classes
+           0 for elements 
+
+         We use dot (.) to specify a class in CSS 
+
+         Example of specificity 0,1,1
+
+           .myClass p { color: purple; } // (0,1,1)
+
+           0 for ids
+           1 for classes
+           1 for elements 
+
+
+
+
+
+
+
+
+
+
+
+
+         Inheritance 
+
+         demo
+           (specificity.html)
+
+           Uncheck all styles for .myClass p and its color
+           will remain blue
+
+           Because CSS uses inheritance.
+           Child elements inherit styles from parent. 
+
+         Example of specificity 1,0,0
+
+           #myId { color: blue; } // (1,0,0)
+
+           1 for ids
+           0 for classes
+           0 for elements 
+
+         We use hash (#) to specify an id in CSS 
+
+         CSS rules are applied to HTML elements based on a hierarchy of specificity,
+           source order, and importance. This cascading behavior determines which styles
+           take precedence when multiple rules conflict. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+</body>
+</html>

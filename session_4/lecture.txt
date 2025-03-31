@@ -1,0 +1,1003 @@
+
+
+
+
+
+
+
+Plan
+
+
+CSS
+Cascading
+Syntax
+Nesting
+Units
+
+
+
+
+
+
+
+
+
+Cascading Style Sheets
+
+
+
+
+
+
+
+We use css to style the html page.
+
+The most important in CSS is 'cascading' word.
+It means that if there are conflicting style rules
+the last one wins.
+By conflicting I mean styles with the same specificity.
+
+In other words - the rules are applied as a cascade.
+
+
+
+
+
+
+
+
+
+
+Example CSS:
+   p { color: red; }
+   p { color: blue; }
+   p { color: yellow; }
+
+
+
+
+
+
+
+Here I have three style rules.
+All set font color of a paragraph 'p'.
+Final color will be 'yellow'
+because it is the last in the queue.
+
+These styles are considered 'conflicting'
+because they have the same specificity.
+
+If specificity of style rules is the same
+the latest rule will be applied.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CSS Syntax for selectors:
+
+
+
+
+
+
+
+tags
+
+
+
+If I want to target an element,
+I can use element tag name:
+
+HTML: <p> text here </p>
+CSS: p { ... }
+
+HTML: <button> click me </button>
+CSS: button { ... }
+
+HTML: <button> <span> click me </span> </button>
+CSS: span { ... }
+
+
+
+classes
+
+If I want to target an element
+I can use its class name with dot (.)
+
+HTML: <p class="red"> text here </p>
+CSS: .red { ... }
+
+HTML: <button class="main"> <span class="child"> click me </span> </button>
+CSS: .child { ... }
+
+
+
+
+ids
+
+If I want to target an element
+I can use its id name with hash (#)
+
+HTML: <p id="redText"> text here </p>
+CSS: #redText { ... }
+
+
+
+
+
+
+
+I can combine selectors:
+
+HTML: <button class="main"> click me </button>
+
+CSS: button.main { ... }
+
+
+
+
+
+
+
+
+
+
+
+
+
+Nesting
+
+
+
+
+
+
+
+
+
+
+Elements in the HTML rarely exist
+on their own. Usually they are nested
+inside other elements.
+
+
+Example 1:
+
+<button>
+    <span> click me </span>
+</button>
+
+
+Example 2:
+
+<section>
+    <button>
+        <p>
+            <span> click me </span>
+            <img src="img.png">
+        </p>
+    </button>
+</section>
+
+
+
+
+
+When I target a nested element in CSS
+I will use space ( ) between element names
+to specify the nesting order:
+
+
+
+HTML:
+<button>
+    <span> click me </span>
+</button>
+
+CSS:
+button span { ... }
+
+With this CSS rule I target <span>
+(not <button>) element.
+
+
+
+
+HTML:
+<section>
+    <button>
+        <p>
+            <span> click me </span>
+            <img src="img.png">
+        </p>
+    </button>
+</section>
+
+
+CSS:
+section button p span { ... }
+
+
+
+
+
+I don't necessarily need to specify all
+nested elements. I can use one of these
+rules, and they all will target the same span:
+
+span { ... }
+p span { ... }
+button p span { ... }
+section p span { ... } (skipped <button>)
+section span { ... } (skipped <button> and <p>)
+section button p span { ... }
+
+
+
+
+
+
+
+
+
+Not only elements can be
+used in nested selectors of CSS rules:
+
+
+
+
+HTML: <button class="main">
+        <p class="child">
+            <p>click me</p>
+        </p>
+     </button>
+
+CSS: button.main .child p { ... }
+
+
+
+
+
+
+
+
+
+When nesting is wrong.
+
+
+
+
+
+
+
+HTML: <button class="main">
+        <p class="child">
+            <p>click me</p>
+        </p>
+     </button>
+
+CSS: div p { ... }
+
+Paragraph inside div.
+
+This rule will not be applied.
+The rule selector must match
+the DOM element structure.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+What is specificity?
+
+
+
+
+
+
+
+
+
+
+
+Specificity - is the way to decide
+which CSS rule is more important
+when different rules target the same
+element.
+
+
+This importance is marked with a weight.
+
+Each css rule has its own specificity
+weight calculated by the browser.
+
+The rule with the highest specificity
+weight will be applied to the element.
+
+If specificity is the same, then the
+same cascading effect will happen -
+the latest in CSS file will be applied.
+
+
+
+
+
+
+
+
+How specificity is calculated?
+
+
+Specificity is calculated based on
+the types of selectors used.
+
+We can use:
+
+1) id (#phoneNumber)
+2) class (.phone)
+3) element (<section>)
+
+
+
+
+
+
+Specificity has this format:
+
+(id, class, element)
+
+
+
+
+
+
+If my CSS rule has element selector:
+
+HTML:
+<p> This text should be red </p>
+
+CSS:
+p { color: red; }
+
+its specificity will be:
+
+(0, 0, 1)
+
+0 - for zero id selectors
+0 - for zero class selectors
+1 - for one element selector (<p>)
+
+
+I can increase specificity of this rule
+by adding class to it:
+
+HTML:
+<p class="danger"> This text should be red </p>
+
+CSS:
+p.danger { color: red; }
+
+its specificity now will be:
+
+(0, 1, 1)
+
+0 - for zero id selectors
+1 - for one class selector (.danger)
+1 - for one element selector (<p>)
+
+
+As you may assume, I can continue
+to increase my specificity:
+
+I will add id to it:
+
+HTML:
+<p class="danger" id="dangerText"> This text should be red </p>
+
+CSS:
+p#dangerText.danger { color: red; }
+
+its specificity now will be:
+
+(1, 1, 1)
+
+1 - for one id selector (#dangerText)
+1 - for one class selector (.danger)
+1 - for one element selector (<p>)
+
+
+One thing to note: I must match
+my ids, classes and elements in the HTML
+with CSS selector, otherwise my style
+will not be applied to this element.
+
+
+For example
+
+I missed id in html:
+
+HTML (no #dangerText):
+<p class="danger"> This text should be red </p>
+
+CSS (#dangerText is still present in the rule):
+p#dangerText.danger { color: red; }
+
+This CSS rule will not be applied to my
+paragraph text.
+
+
+
+
+I can add more than one class to the element
+or list parent classes to increase specificity:
+
+
+HTML:
+<section>
+    <button class="danger-button">
+        <span class="danger-text">
+            I am dangerous
+        </span>
+    </button>
+</section>
+
+
+CSS:
+span { color: red; } -> (0,0,1)
+.danger-text { color: red; } -> (0,1,0)
+span.danger-text { color: red; } -> (0,1,1)
+button span.danger-text { color: red; } -> (0,1,2)
+button.danger-button span.danger-text { color: red; } -> (0,2,2)
+section button.danger-button span.danger-text { color: red; } -> (0,2,3)
+
+
+(0,0,1) < (0,1,0)
+(0,0,9) < (0,1,0)
+(0,1,0) < (0,1,1)
+
+
+I can add many elements
+but if conflicting rule will have
+just one class in it, my
+rule with many elements will
+still lose this battle ((
+
+Example:
+section button span { color: red; } (0,0,3)
+.danger-text { color: blue; } (0,1,0)
+
+The final result will be: blue.
+blue (0,1,0) > red (0,0,3)
+
+
+
+ID - is the most important:
+
+   (1,0,0) > (0,0,9)
+   (1,0,0) > (0,9,9)
+   (1,0,0) > (0,99999,99999)
+
+CLASS - is second most important:
+
+   (0,1,0) > (0,0,9)
+   (0,1,0) > (0,0,999999)
+
+ELEMENT - is the least important:
+
+   (0,0,1) vs (0,0,1) - the last will win
+   (0,0,2) > (0,0,1)
+   (0,0,3) > (0,0,2)
+
+
+
+
+
+
+
+
+
+How to see specificity?
+
+
+
+
+
+
+
+In devtools if you hover over the rule
+   p { color: red; }
+
+You will see Specificity: (0, 0, 1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+Why specificity matters?
+
+demo (css/specificity.html)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CSS Units
+
+
+
+
+
+
+
+
+
+
+
+px
+em
+rem
+
+
+
+
+
+
+
+
+
+px - Pixels. Absolute unit with fixed size.
+
+
+
+Example:
+
+h1 {
+    font-size: 24px;
+    padding: 12px;
+}
+
+Header will always have 24px font-size
+and padding 12px.
+
+Anytime you use 'px' as your CSS unit
+it precisely sets the size.
+
+
+
+
+
+
+
+
+
+em - Relative unit:
+
+ 1) for font-size - relative to parent element.
+ 2) for "not-font" - relative to current element.
+
+
+
+
+
+
+
+
+1) Font-size
+
+
+
+
+
+
+Example of font-size:
+
+HTML:
+<div>
+    <p> some text </p>
+</div>
+
+
+CSS:
+div { font-size: 18px; }
+p { font-size: 1.5em; } -> 27px
+
+Paragraph text in this example will have
+font-size 27px, as a result of a calculation:
+1.5 * 18 = 27px
+
+Child element (<p>) used 'em' unit, which is
+relative to the font-size of its
+parent element (<div>).
+
+
+
+
+If I change the CSS for the parent only
+it will affect child element as well,
+because child element uses 'em' units:
+
+CSS:
+div { font-size: 20px; }
+
+I didn't change CSS rule for paragraph text.
+But because it has relative units - 'em',
+the paragraph text will have font-size 30px now
+1.5 * 20 = 30px
+
+
+
+
+
+
+
+2) Not Font size
+
+
+
+
+
+
+
+When I say "not font" I mean anything which
+accepts a size value and is not a font-size:
+
+- margin
+- padding
+- border
+other
+
+
+
+
+Example:
+
+
+HTML:
+<div>
+    <p> some text </p>
+</div>
+
+
+CSS:
+p {
+    font-size: 16px;
+    margin-bottom: 1em; -> 16px
+}
+
+Paragraph text in this example will have
+margin-bottom 16px, as a result of a calculation:
+1 * 16 = 16px
+
+I used 'em' unit for non-font property (margin-bottom),
+which is relative to the font-size of
+the current element (<p>).
+I have set its font-size explicitly to 16px.
+
+
+
+
+
+
+
+Example:
+
+HTML:
+<div>
+    <p> some text </p>
+</div>
+
+
+CSS:
+div { font-size: 20px; }
+p {
+    font-size: 0.8em;
+    margin-bottom: 2em; -> 32px
+}
+
+First, I calculate the font-size of current element (<p>).
+As it has 'em' unit, I need parent's font-size:
+p font-size: 0.8 * 20px = 16px.
+
+Next, I calculate the margin-bottom value based
+on current element's font-size:
+p margin-bottom: 2 * 16px = 32px.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+rem - Relative to root.
+
+The root here means 'html' element.
+
+
+
+HTML:
+<div>
+    <p> some text </p>
+</div>
+
+
+CSS:
+p { font-size: 1.5rem; } -> 24px
+
+Paragraph text in this example will have
+font-size 24px, as a result of a calculation:
+1.5 * 16 = 24px.
+
+16px in this case is the default font size
+of 'html' element.
+
+
+
+
+
+
+Example:
+
+<div>
+    <p> some text </p>
+</div>
+
+
+CSS:
+html { font-size: 14px }
+p {
+    font-size: 1.5rem; -> 21px
+    border-width: 1.2rem; -> 16.8px
+}
+
+Paragraph text in this example will have
+font-size 21px, as a result of a calculation:
+1.5 * 14 = 21px.
+
+It will have border-width 16.8px based on
+roots font-size, not on current font-size:
+1.2 * 14 = 16.8px
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Why use relative units (em or rem)?
+
+
+Answer: scalability.
+
+
+Relative units are the powerful tool for
+scaling components proportionally.
+
+If I change an element’s font-size,
+all its em-based properties
+(padding, margin, etc.) scale automatically.
+
+Avoids hard-coded values, improves responsiveness.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Display
+
+
+
+
+
+
+
+There are 4 main ways to display
+an element in CSS:
+
+
+- block
+- inline
+- inline-block
+- flex
+
+
+
+
+
+
+
+
+
+
+block
+
+
+Takes the full width available for it.
+Stacks vertically.
+I can apply width, height, margin, padding to it.
+
+Examples:
+- all headers (h1, h2, h3, h4, h5, h6)
+- paragraphs (p)
+- div
+
+CSS: display: block;
+
+
+
+
+
+inline
+
+
+Flows horizontally.
+Ignores width and height properties.
+Respects only horizontal margin and padding.
+
+Examples:
+- span
+- img
+- links (a)
+
+CSS: display: inline;
+
+
+
+
+
+
+inline-block
+
+
+Hybrid between block and inline.
+Flows horizontally.
+Respects width and height.
+
+CSS: display: inline-block;
+
+
+
+
+
+flex
+
+
+All modern layouts use flex.
+We will cover this next time.
+
+CSS: display: flex;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CSS rules are applied to HTML elements based on a hierarchy of specificity,
+source order, and importance. This cascading behavior determines which styles
+take precedence when multiple rules conflict.
+
+
+
+
+
+
+demo
+   (in css/css.html)
+
+   - how to inspect DOM
+   - how to interpret CSS styles
+   - topmost css rule in the list - the one which is applied
+   - crossed out css rule = overridden
+   - uncheck one by one and show how color changes
+   - uncheck everything and still color is black (default)
+   - show Computed tab
+   - show how to add styles in browser (color: purple, color: white)
+   - show how to update existing css rule value
+   - show how to add more styles to existing rule (font-size)
+   - show how to delete elements from DOM
+   - show how to 'hide' elements in DOM ('h)
+   - show how to add elements to DOM (Edit as HTML) (<strong>bold text</strong>)
+   - show how to edit text of element
+   - show what is margin
+
+
+
+
+
+
+
+
+
+Thank you!
+
+
+
+
+

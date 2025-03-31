@@ -426,24 +426,6 @@ its specificity now will be:
 1 - for one element selector (<p>)
 
 
-One thing to note: I must match
-my ids, classes and elements in the HTML
-with CSS selector, otherwise my style
-will not be applied to this element.
-
-
-For example
-
-I missed id in html:
-
-HTML (no #dangerText):
-<p class="danger"> This text should be red </p>
-
-CSS (#dangerText is still present in the rule):
-p#dangerText.danger { color: red; }
-
-This CSS rule will not be applied to my
-paragraph text.
 
 
 
@@ -851,6 +833,86 @@ Avoids hard-coded values, improves responsiveness.
 
 
 
+
+
+Margin and Padding
+
+
+
+
+
+
+
+
+
+
+Padding is a space inside an element
+(between content and border)
+
+Margin is a space outside an element
+(between border and other elements)
+
+
+
+
+
+
+Syntax:
+
+CSS:
+
+div { margin: 20px; }
+short notations, sets margin around
+the <p> to 20px;
+
+It is the same as:
+
+div {
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+
+
+The same for padding:
+
+div { padding: 20px; }
+short notations, sets padding for
+the <p> to 20px;
+
+It is the same as:
+
+div {
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+}
+
+
+
+
+
+
+
+
+
+demo: css/margin_padding.html
+
+
+
+
+
+
+
+
+
+
+
+
+
 Display
 
 
@@ -956,19 +1018,7 @@ CSS: display: flex;
 
 
 
-
-
-
-CSS rules are applied to HTML elements based on a hierarchy of specificity,
-source order, and importance. This cascading behavior determines which styles
-take precedence when multiple rules conflict.
-
-
-
-
-
-
-demo
+DevTools demo
    (in css/css.html)
 
    - how to inspect DOM

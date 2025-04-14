@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Relative Positioning</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .box {
+            width: 100px;
+            padding: 40px 20px;
+            margin: 10px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+        }
+        .red {
+            background: tomato;
+        }
+        .green {
+            background: limegreen;
+        }
+        .blue {
+            background: dodgerblue;
+        }
+        .moveIt {
+            /*position: relative;*/
+            /*top: 10px;*/
+        }
+    </style>
+</head>
+<body>
+<h1>Relative Positioning</h1>
+<p>All elements still follow normal document flow:</p>
+
+<section class="box red">1</section>
+<section class="box green moveIt">2</section>
+<section class="box blue">3</section>
+
+<p>These boxes appear exactly in the order they are written in the HTML.</p>
+</body>
+</html>

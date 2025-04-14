@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Display Types Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .container {
+            background-color: #f9f9f9;
+            border: 1px dashed #ccc;
+            padding: 15px;
+            margin-bottom: 30px;
+        }
+
+        .inline-demo span {
+            background-color: #99ff99;
+            padding: 10px;
+            margin: 5px;
+            border: 2px solid #33ff33;
+        }
+
+        @media (max-width: 600px) { /* change to width */
+            .inline-demo span {
+                /*display: block;*/
+            }
+        }
+
+        /* other CSS rules inside */
+        @media (max-width: 600px) {
+            .inline-demo span {
+                /*font-size: 2em;*/
+            }
+        }
+
+        /* wrong order (600, 800) */
+        @media (max-width: 600px) {
+            .inline-demo span {
+                /*background-color: yellow;*/
+                /*border-color: chocolate;*/
+            }
+        }
+
+        @media (max-width: 800px) {
+            .inline-demo span {
+                /*background-color: #9999ff;*/
+                /*border-color: #3333ff;*/
+            }
+        }
+
+        /* correct order  (800, 600) */
+        @media (max-width: 800px) {
+            .inline-demo span {
+                /*background-color: #9999ff;*/
+                /*border-color: #3333ff;*/
+            }
+        }
+
+        @media (max-width: 600px) {
+            .inline-demo span {
+                /*background-color: yellow;*/
+                /*border-color: chocolate;*/
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+<h1>CSS Media Queries Demo</h1>
+
+<div class="container inline-demo">
+    <h2>Inline Elements (default for span, a, etc.)</h2>
+    <p>Inline elements flow horizontally and ignore width/height:</p>
+    <span>Inline Box 1</span>
+    <span>Inline Box 2</span>
+    <span>Inline Box 3</span>
+    <span>Inline Box 4</span>
+    <span>Inline Box 5</span>
+    <span>Inline Box 6</span>
+    <p>Notice how boxes flow together horizontally, and padding/margin only affects horizontal space.</p>
+</div>
+
+</body>
+</html>

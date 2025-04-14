@@ -1,0 +1,14 @@
+Flexbox
+Flexbox is a CSS layout model that makes it easy to design flexible and responsive layouts without relying on floats or positioning hacks. As a backend developer, you might not deal with UI often, but understanding Flexbox can help you tweak frontend layouts when needed.
+
+
+
+Let's say we want to create a basic card component with:
+
+A header, content area, and footer stacked vertically.
+
+The footer should stick to the bottom even if content is short.
+
+Everything should be centered horizontally.
+
+This is surprisingly difficult with traditional CSS techniques!

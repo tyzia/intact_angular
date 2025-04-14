@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Absolute Positioning</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            position: relative; /* this makes body a positioned element */
+        }
+        .box {
+            width: 100px;
+            padding: 40px 20px;
+            margin-bottom: 10px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+        }
+        .red {
+            background: tomato;
+        }
+        .green {
+            background: limegreen;
+        }
+        .blue {
+            background: dodgerblue;
+        }
+        .positionIt {
+            /*position: absolute;*/
+            /*top: 350px;*/
+        }
+    </style>
+</head>
+<body>
+<h1>Absolute Positioning</h1>
+<p>Absolute elements are removed from normal document flow:</p>
+
+<section class="box red">1</section>
+<section class="box green positionIt">2</section>
+<section class="box blue">3</section>
+
+<p>Some text below the boxes.</p>
+</body>
+</html>

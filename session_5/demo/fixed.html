@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fixed Positioning Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            height: 2000px; /* Extra height to enable scrolling */
+        }
+        .box {
+            width: 100px;
+            padding: 40px 20px;
+            margin-bottom: 10px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+        }
+        .red {
+            background: tomato;
+        }
+        .green {
+            background: limegreen;
+        }
+        .blue {
+            background: dodgerblue;
+        }
+        .spacer {
+            height: 800px; /* Creates scrollable space */
+            background: #f0f0f0;
+            margin: 20px 0;
+            padding: 10px;
+        }
+        .scroll {
+            /*position: fixed; */
+            /*top: 60px; */
+            /*left: 100px; */
+        }
+    </style>
+</head>
+<body>
+<h1>Fixed Positioning Demo</h1>
+<p>The green box will stay fixed while you scroll the page:</p>
+
+<section class="box red">1</section>
+<section class="box green scroll">2</section>
+<section class="box blue">3</section>
+
+<div class="spacer">
+    Scroll down to see how the green box stays in place.<br>
+    All other content will scroll normally.<br><br>
+    Keep scrolling...<br><br>
+    Almost there...<br><br>
+    You've reached the bottom!
+</div>
+
+<p>More content after the spacer.</p>
+</body>
+</html>

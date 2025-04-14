@@ -1,0 +1,627 @@
+
+
+
+
+
+
+
+
+Plan
+
+
+CSS Position
+Normal flow
+static
+relative
+absolute
+fixed
+sticky
+Responsive design
+Media queries
+Flexbox
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CSS Position
+
+
+
+
+
+
+It is a property which controls
+how an element is positioned in
+the document. When I say "document"
+I really mean a web page in your
+browser.
+
+
+
+
+
+
+Main possible values are:
+
+static
+relative
+absolute
+fixed
+sticky
+
+
+
+
+
+
+
+
+
+
+
+
+position: static
+
+
+
+
+
+
+By default, all elements are positioned
+"naturally" or "normally" in the document
+as they appear in your code.
+
+
+
+
+Normal flow
+
+
+
+
+
+You will hear a lot a "normal flow".
+
+You don't need to add any position
+rule in this case to CSS. It is a default.
+
+
+Block elements in "normal flow":
+
+- Stack vertically (top to bottom).
+- Take up the full width of their container.
+- Respect margins/padding.
+
+Inline elements in "normal flow":
+
+- Flow horizontally (left to right).
+- Only take up as much width as needed.
+- Line-wrap if space runs out.
+
+
+Understanding Normal Flow will allow you:
+
+- Predict how elements behave by default.
+- Debug layout issues
+(e.g., why elements overlap or disappear).
+- Know when to intentionally break flow.
+
+
+
+
+
+
+
+demo/static.html
+
+
+
+
+
+
+
+
+What breaks normal flow?
+
+
+The following CSS rules remove
+element from normal flow:
+
+- position: absolute or fixed.
+- float: left or right.
+- display: flexbox
+
+
+
+
+
+
+
+
+
+
+
+
+position: relative
+
+
+
+
+
+Relative positioning does not remove
+element from normal flow.
+
+The element is still
+positioned "normally"
+on the page, but this time I can
+adjust its position relative to its
+normal flow. Other elements on the page
+will "think" that element is still in
+its normal position, no matter how
+I will adjust its position.
+
+
+
+
+
+To adjust the position of relative element:
+
+top
+right
+bottom
+left
+
+
+
+Example:
+
+position: relative;
+top: 10px; <- this will move element down 10px
+from its normal position
+
+
+
+
+demo/relative.html
+
+
+
+
+
+
+
+
+
+position: absolute
+
+
+
+
+
+
+Absolute positioning removes element
+from normal flow.
+
+Other elements on the page "forget"
+about existence of this element
+and eagerly "grab" its place.
+
+Until I apply adjustments to its:
+
+top
+right
+bottom
+left
+
+the element is still present on the page
+and stays in its "natural" position.
+
+Because it was removed from normal flow,
+it will now cover any other elements.
+
+If I apply adjustments to
+absolute element (top, right, bottom, left),
+these will be applied
+relative to its first positioned ancestor
+or <html> tag.
+
+
+Positioned ancestor means the one
+which has not a default position.
+Not static. Any element with position:
+
+relative
+absolute
+fixed
+sticky
+
+
+
+
+
+
+
+
+Example 1
+No positioned ancestors
+
+<html>
+    <div>
+        <span style="position: absolute; top: 10px;"> Hey </span>
+    </div>
+<html>
+
+span is positioned relative to html.
+
+
+
+
+
+
+
+Example 2
+One positioned ancestor
+
+
+<section style="position: relative;">
+    <div>
+        <span style="position: absolute; top: 10px;"> Hey </span>
+    </div>
+<section>
+
+span is positioned relative to section.
+
+
+
+
+
+
+
+
+Example 3
+Two positioned ancestors
+
+
+<section style="position: relative;">
+    <div style="position: relative;">
+        <span style="position: absolute; top: 10px;"> Hey </span>
+    </div>
+<section>
+
+span is positioned relative to div.
+
+
+
+
+
+
+
+
+demo/absolute.html
+
+
+
+
+
+
+
+
+
+
+position: fixed
+
+
+
+
+
+
+Fixed element is positioned relative
+to viewport.
+
+The same as absolute positioning, it will
+be first removed from normal flow,
+other elements will "grab" its place
+and after that fixed element will be
+placed in its normal position.
+
+But now it is fixed to that position.
+If I scroll, it will stay there.
+
+I can apply adjustments (top, right, bottom,
+left) which will reposition it
+relative to the viewport.
+
+
+
+
+
+demo/fixed.html
+
+
+
+
+
+
+
+
+
+
+
+position: sticky
+
+
+
+
+
+Hybrid of relative and fixed.
+Sticks to a position after scrolling
+past it.
+
+The element behaves normally until
+the page scrolls to its position,
+then "sticks" related to its scrollable
+ancestor or viewport.
+
+When scrolling back, it returns to its
+normal position.
+
+
+
+
+
+
+
+demo/sticky.html
+
+
+
+
+
+
+Common use cases:
+
+.header { position: sticky; top: 0; }
+.footer { position: sticky; bottom: 0; }
+
+
+
+demo/sticky_header.html
+
+
+
+
+
+
+
+
+
+
+Display vs Position
+
+
+
+
+Display controls:
+how an element generates its box
+
+block: takes full width, stacks vertically
+inline: flows horizontally, ignores width/height
+
+
+Position controls:
+how an element is positioned relative to its
+normal flow.
+
+
+
+
+In other words:
+
+1. Display determines element's normal flow.
+2. Position determines how to place it related
+to normal flow.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Responsive Design
+
+
+
+
+
+
+
+
+
+
+We talk about responsiveness in UI when
+we want our page to look perfect on any
+device:
+
+- large screen
+- tablet
+- mobile phone
+
+
+
+
+
+
+
+In order to adapt our CSS to different
+screen sizes we will use "media queries".
+
+
+
+
+
+
+Basic syntax:
+@media (condition) { ... CSS rule ... }
+
+
+
+
+
+
+Usual condition can be:
+
+max-width
+min-width
+
+but there are many more.
+
+
+
+
+
+
+
+
+For example, I want sections on a page
+stretch in one line on large screens
+and stack on each other on small screens.
+
+
+
+
+
+
+
+
+
+demo/media_queries.html
+
+
+
+
+
+
+
+Quickly demo how to check responsiveness in DevTools
+
+
+
+
+
+Why not @media (width: 600px) ?
+
+
+
+
+
+
+The order of media queries matters!
+
+
+
+Media queries with max-width are competing
+against each other. The rule of thumb is:
+
+place fist with the highest max-width
+and next with lower max-width.
+
+For example:
+
+@media (max-width: 1000px) { ... }
+@media (max-width: 900px) { ... }
+@media (max-width: 700px) { ... }
+@media (max-width: 500px) { ... }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Flexbox
+
+
+
+
+
+
+Before talking about flexbox
+lets illustrate how I will struggle
+to style a page without flexbox.
+
+
+
+
+
+Problems
+
+
+
+
+
+
+
+
+
+without flex problems:
+
+margins are not respected by absolute
+display inline-block
+2 in a row
+3 in a row
+gap 10px
+make div parent position relative
+maintain gap
+make responsive
+equal height:
+- paragraph below must be at least position relative
+- if my card height will change, I would need to adjust p position again.
+
+-- comment out paragraph, focus on equal width
+there is no way to set them equal height. Only with JS
+and combination of display: table, which I honestly don't know
+how to do.
+
+
+
+
+
+
+
+
+
+position: relative
+Problem: we have space in normal flow
+
+position: absolute
+Problem: not responsive
+

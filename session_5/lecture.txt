@@ -18,7 +18,7 @@ fixed
 sticky
 Responsive design
 Media queries
-Flexbox
+
 
 
 
@@ -202,6 +202,19 @@ demo/relative.html
 
 
 
+CCL2
+
+https://githubifc.iad.ca.inet/ContactCL/cbfq-rg-appstatic/blob/91b901ec5f4a85c6314d7580b46304abb811730c/projects/cbfq-appstatic/src/app/modules/address/components/city-manual-address/city-manual-address.component.scss#L16
+
+
+
+
+
+
+
+
+
+
 
 
 position: absolute
@@ -317,6 +330,20 @@ demo/absolute.html
 
 
 
+CCL2
+
+https://githubifc.iad.ca.inet/ContactCL/cbfq-rg-appstatic/blob/91b901ec5f4a85c6314d7580b46304abb811730c/projects/cbfq-appstatic/src/app/modules/bind/components/bind-related-policy-information/bind-related-policy-information.component.scss#L6
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -348,6 +375,16 @@ relative to the viewport.
 
 
 demo/fixed.html
+
+
+
+
+
+
+
+CCL2
+
+https://githubifc.iad.ca.inet/ContactCL/cbfq-rg-appstatic/blob/91b901ec5f4a85c6314d7580b46304abb811730c/projects/cbfq-appstatic/src/app/modules/flyout/components/flyout-panel/flyout-panel.component.scss#L7
 
 
 
@@ -398,6 +435,22 @@ Common use cases:
 
 
 demo/sticky_header.html
+
+
+
+
+
+
+
+
+
+CCL2
+
+https://githubifc.iad.ca.inet/ContactCL/cbfq-rg-appstatic/blob/91b901ec5f4a85c6314d7580b46304abb811730c/projects/cbfq-appstatic/src/app/modules/policy-header/components/sticky-header/sticky-header.component.scss#L8
+
+
+
+
 
 
 
@@ -541,7 +594,7 @@ The order of media queries matters!
 Media queries with max-width are competing
 against each other. The rule of thumb is:
 
-place fist with the highest max-width
+place first with the highest max-width
 and next with lower max-width.
 
 For example:
@@ -561,13 +614,19 @@ For example:
 
 
 
+CCL2
+
+https://githubifc.iad.ca.inet/ContactCL/cbfq-rg-appstatic/blob/91b901ec5f4a85c6314d7580b46304abb811730c/projects/cbfq-appstatic/src/app/modules/referral/components/referral-page/referral-page.component.scss#L8
 
 
 
 
 
 
-Into to Flexbox
+
+
+
+Intro to Flexbox
 
 
 
@@ -648,114 +707,6 @@ examples/equal_height.png
 There is no way to set them equal height. Only with JS
 and combination of display: table, which I honestly don't know
 how to do.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Flexbox
-
-
-
-
-
-
-
-
-Flexbox (Flexible Box Layout) is a CSS layout model
-designed to create flexible and responsive web designs.
-It allows you to distribute space and align items within
-a container, even when their sizes are unknown or dynamic.
-
-
-
-
-
-
-
-
-Main Terms:
-
-- Flex Container
-(parent element)
-
-- Flex Items
-(children)
-
-- Main Axis
-(column or row)
-
-
-
-
-
-
-
-
-Common properties for the Container:
-
-flex-direction
-Sets the direction of items (row, column).
-
-justify-content
-Aligns items along the main axis.
-
-align-items
-Stretch, center, etc with items.
-
-flex-wrap
-Allows items to wrap to new lines if needed.
-
-
-Common properties for the Items:
-
-flex-grow
-Allows an item to grow if there's extra space.
-
-flex-shrink
-Allows an item to shrink if needed.
-
-flex-basis
-Sets the initial size of an item.
-
-
-
-
-
-
-Example
-
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.item {
-  flex: 1; /* Grow and shrink equally */
-}
-
-
-
-
-
-
-
-Great resource about Flexbox:
-https://css-tricks.com/snippets/css/a-guide-to-flexbox/
-
 
 
 

@@ -1,0 +1,134 @@
+
+
+
+
+
+
+
+
+Plan
+
+
+
+Flexbox
+Sass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Flexbox
+
+
+
+
+
+
+
+
+Flexbox (Flexible Box Layout) is a CSS layout model
+designed to create flexible and responsive web designs.
+It allows you to distribute space and align items within
+a container, even when their sizes are unknown or dynamic.
+
+
+
+
+
+
+
+
+Main Terms:
+
+- Flex Container
+(parent element)
+
+- Flex Items
+(children)
+
+- Main Axis
+(column or row)
+
+
+
+
+
+
+
+
+Common properties for the Container:
+
+flex-direction
+Sets the direction of items (row, column).
+
+justify-content
+Aligns items along the main axis.
+
+align-items
+Stretch, center, etc with items.
+
+flex-wrap
+Allows items to wrap to new lines if needed.
+
+
+Common properties for the Items:
+
+flex-grow
+Allows an item to grow if there's extra space.
+
+flex-shrink
+Allows an item to shrink if needed.
+
+flex-basis
+Sets the initial size of an item.
+
+
+
+
+
+
+Example
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.item {
+  flex: 1; /* Grow and shrink equally */
+}
+
+
+
+
+
+
+
+Great resource about Flexbox:
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
+
+
+
+
+
+
+
+

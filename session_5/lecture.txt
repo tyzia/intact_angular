@@ -567,7 +567,7 @@ For example:
 
 
 
-Flexbox
+Into to Flexbox
 
 
 
@@ -590,24 +590,62 @@ Problems
 
 
 
+A row of cards
+examples/row.png
 
 
-without flex problems:
+Initially I will have only HTMl.
+Next I will show step by step styling.
 
-margins are not respected by absolute
-display inline-block
-2 in a row
-3 in a row
-gap 10px
-make div parent position relative
-maintain gap
-make responsive
-equal height:
-- paragraph below must be at least position relative
-- if my card height will change, I would need to adjust p position again.
 
--- comment out paragraph, focus on equal width
-there is no way to set them equal height. Only with JS
+
+demo/card_inline.html
+
+
+
+
+
+Positioning problems:
+
+- position: relative need to add
+pixel perfect offset.
+- not responsive.
+- text below still maintains the gap.
+
+
+- position: absolute need to add
+pixel perfect offset.
+- not responsive.
+- margins are not respected.
+
+If I add three sections and change div
+to position: relative, the design will
+be broken.
+
+
+Problem with gap.
+
+
+
+
+
+
+
+
+
+Problem with equal height
+
+
+
+
+
+
+A row of cards equal height
+examples/equal_height.png
+
+
+
+There is no way to set them equal height. Only with JS
 and combination of display: table, which I honestly don't know
 how to do.
 
@@ -619,9 +657,122 @@ how to do.
 
 
 
-position: relative
-Problem: we have space in normal flow
 
-position: absolute
-Problem: not responsive
+
+
+
+
+
+
+Flexbox
+
+
+
+
+
+
+
+
+Flexbox (Flexible Box Layout) is a CSS layout model
+designed to create flexible and responsive web designs.
+It allows you to distribute space and align items within
+a container, even when their sizes are unknown or dynamic.
+
+
+
+
+
+
+
+
+Main Terms:
+
+- Flex Container
+(parent element)
+
+- Flex Items
+(children)
+
+- Main Axis
+(column or row)
+
+
+
+
+
+
+
+
+Common properties for the Container:
+
+flex-direction
+Sets the direction of items (row, column).
+
+justify-content
+Aligns items along the main axis.
+
+align-items
+Stretch, center, etc with items.
+
+flex-wrap
+Allows items to wrap to new lines if needed.
+
+
+Common properties for the Items:
+
+flex-grow
+Allows an item to grow if there's extra space.
+
+flex-shrink
+Allows an item to shrink if needed.
+
+flex-basis
+Sets the initial size of an item.
+
+
+
+
+
+
+Example
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.item {
+  flex: 1; /* Grow and shrink equally */
+}
+
+
+
+
+
+
+
+Great resource about Flexbox:
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thank you!
+
+
+
 

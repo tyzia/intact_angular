@@ -13,29 +13,21 @@
         margin: 20px;
         padding: 16px;
         font-family: 'Arial', sans-serif;
-        text-align: center;
         width: 300px;
+        text-align: center;
     }
-
-    div {
-      margin: 0 auto;
-      padding-top: 90px;
-    }
-
     .plain header {
         background: #ff6b6b;
         color: white;
         padding: 12px 16px;
         border-radius: 6px 6px 0 0;
     }
-
     .plain main {
         background-color: white;
         color: #333333;
-        padding: 8px 0;
+        padding: 8px;
         line-height: 1.5;
     }
-
     .plain footer {
         color: white;
         background-color: #4ecdc4;
@@ -43,18 +35,24 @@
         border-radius: 0 0 6px 6px;
     }
 
-    .second {
-        position: absolute;
-        top: 98px;
-        left: 360px;
+    div {
+      margin: 0 auto;
+      padding-top: 90px;
     }
 
-    .third {
-        position: absolute;
-        top: 98px;
-        left: 710px;
+    /* one magic line */
+    div {
+        display: flex;
     }
 
+    .plain {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .plain main {
+        flex-grow: 1;
+    }
   </style>
 </head>
 <body>
@@ -62,7 +60,7 @@
 <div>
     <section class="plain">
       <header>Header 1</header>
-      <main>Content (may be short or long)</main>
+      <main><p>Content (may be short or long)</p></main>
       <footer>Footer 1</footer>
     </section>
 
@@ -84,7 +82,7 @@
         <footer>Footer 3</footer>
     </section>
 </div>
-<!--<p class="text_below">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>-->
+<p class="text_below">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 
 </body>
 </html>

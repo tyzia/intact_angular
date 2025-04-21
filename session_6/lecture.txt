@@ -89,7 +89,7 @@ be broken.
 Problem with gap.
 
 
-
+-- position: relative of the parent <div>
 
 
 
@@ -131,6 +131,24 @@ how to do.
 
 
 Flexbox
+
+
+
+
+
+
+
+
+
+demo/card_inline.html
+
+
+
+
+
+
+
+demo/card_inline_equal_height.html
 
 
 

@@ -1,0 +1,270 @@
+
+
+
+What is Angular?
+
+- A front-end framework developed by Google.
+- Allows to create SPA: single-page application.
+- Uses TypeScript.
+- Component-based architecture.
+
+
+
+
+
+
+
+Why component-based is cool?
+
+
+You may have heard "Write once, use anywhere".
+Which means: we create a component and then reuse
+it across the app.
+
+In my opinion, it is more a marketing hype.
+Because, the effort to maintain this shared component
+if harder, than creating a new component needed.
+
+
+We use components in our Angular app for these reasons:
+
+1) Logical Separation of Concerns
+- Components isolate pages or dialogs.
+- Cleaner than dumping everything into a single file.
+
+2) Better Maintainability
+- Changes in one component don’t break others.
+- Easier to debug.
+
+3) Easier Team Collaboration
+- Different teams can work on different components.
+
+
+
+
+Components
+
+Each component has 3-4 parts:
+
+- TS file to add logic.
+- HTML template file to control the view.
+- SPEC file to add unit tests.
+- SCSS file to control styling (optional).
+
+
+
+Project folder structure
+
+
+cbfq-rg-appstatic/
+.github - settings related to PRs
+docker - Docker settings
+projects - where our Angular app is
+server - Mock server if we need to run it locally
+- angular.json
+- package.json
+- tailwind.config.js
+
+
+
+
+cbfq-rg-appstatic/projects/cbfq-appstatic
+components
+directives
+models
+modules
+services
+utils
+
+
+
+We group components under 'modules'.
+
+
+Example 'Add Coverage' module
+
+
+
+The main file for the module is:
+add-coverage.module.ts
+
+This file defines any components,
+related to the module, in 'declarations'
+property of @NgModule() decorator.
+
+
+@NgModule({
+    declarations: [
+        SearchCoveragesComponent,
+        AddCoveragesDialogComponent,
+        ...
+    ]
+})
+
+Any time you will be creating a new component,
+you should add it to related module to 'declarations'.
+
+
+
+Syntax
+
+
+@NgModule({
+  declarations: [],   // Components/Directives/Pipes
+  imports: [],        // Other modules this module depends on
+  exports: [],        // What other modules can use (public API)
+  providers: [],      // Services used by the components in this module
+})
+export class FeatureModule {}
+
+
+
+
+
+Components
+
+
+
+
+
+
+
+
+Each component in our app usually has
+at least 3 files:
+
+example.component.ts
+example.component.html
+example.component.spec.ts
+example.component.scss (optional)
+
+
+
+
+
+Syntax
+
+
+example.component.ts
+@Component({
+  selector: 'app-example',
+  templateUrl: './example.component.html',
+  styleUrls: ['./example.component.scss']
+})
+export class ExampleComponent {
+  message = 'Hello World!';
+}
+
+The selector should be unique and start with 'app-'.
+
+example.component.html
+<p class='hello'>Hello world</p>
+
+example.component.scss
+.hello { font-size: 2rem; }
+
+
+
+
+
+
+Example of using this component in other template:
+
+other-place.component.html
+<div>
+    <app-example></app-example>
+</div>
+
+
+Result after running the app in browser:
+<div>
+    <p class='hello'>Hello world</p>
+</div>
+
+
+
+
+
+
+Style Encapsulation
+
+
+
+
+
+Angular components have view encapsulation.
+Styles defined in a component
+only apply to that component's template.
+
+
+
+Example
+
+@Component({
+  selector: 'app-blue-text',
+  template: `<div class="hello">I'm blue text</div>`,
+  styles: [`
+    .hello {
+      color: blue;
+      font-size: 20px;
+    }
+  `]
+})
+export class BlueTextComponent {}
+
+@Component({
+  selector: 'app-red-text',
+  template: `<div class="hello">I'm red text</div>`,
+  styles: [`
+    .hello {
+      color: red;
+      font-weight: bold;
+    }
+  `]
+})
+export class RedTextComponent {}
+
+The app:
+
+<app-blue-text></app-blue-text>
+<app-red-text></app-red-text>
+
+
+
+
+To make sure that styles are correctly
+applied to each component, Angular will do:
+
+1. Add unique attribute to HTML component.
+2. Update css of the component using this attribute.
+
+
+
+
+
+
+Result in browser:
+
+DOM
+<app-blue-text _ngcontent-blue>
+  <div _ngcontent-blue class="hello">I'm blue text</div>
+</app-blue-text>
+
+<app-red-text _ngcontent-red>
+  <div _ngcontent-red class="hello">I'm red text</div>
+</app-red-text>
+
+Styles
+.hello[_ngcontent-blue] {
+  color: blue;
+  font-size: 20px;
+}
+.hello[_ngcontent-red] {
+  color: red;
+  font-weight: bold;
+}
+
+
+
+
+

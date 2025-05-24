@@ -6,11 +6,14 @@
 
 Plan
 
-Into to Angular
+Intro to Angular
 SPA
 Component-based architecture
 Landing page and CCL2 app
-Code owners and maintainers
+Users: BR, UW
+Main environments: INTG11,08
+git workflow
+PRs and Gating
 Running on local
 
 
@@ -59,6 +62,8 @@ Traditional website flow
 - Browser → Unloads the current page, reloads everything from scratch.
 
 Result: Visible "flash" or blank screen during reload.
+
+demo: https://commons.wikimedia.org/wiki/Category:CommonsRoot
 
 
 
@@ -138,13 +143,13 @@ it across the app.
 
 In my opinion, it is more a marketing hype.
 Because, the effort to maintain this shared component
-is harder, than creating a new component needed.
+is larger, than creating a new component.
 
 
-We use components in our Angular app for these reasons:
+We use components in our Angular app for other reasons:
 
 1) Logical Separation of Concerns
-- Components isolate pages, sections or dialogs.
+- Components isolate pages, sections or dialog popups.
 - Cleaner than dumping everything into a single file.
 
 2) Better Maintainability
@@ -192,7 +197,27 @@ This app has all pages for:
 
 
 
-Brokers may land on Main application via:
+
+
+
+
+Versions of Angular
+
+Both our Angular apps are v17.
+
+
+To see a version of Angular open
+package.json and see "dependencies" for
+Angular.
+
+For example, @angular/animations: 17.3.12
+
+This means that we have Angular v17.
+
+
+
+
+Brokers may land on CCL2 application via:
 
 1) Landing page
 2) Directly through url (bookmarked the link)
@@ -205,10 +230,75 @@ Brokers may land on Main application via:
 
 
 
+Users: Brokers vs Underwriters
+
+We have two categories of users
+who can access the same Angular app:
+
+1. Internal or Underwriters (UW)
+2. External or Brokers (BR)
 
 
 
-Repos
+Our main environments:
+
+- INTG11
+- INTG08
+
+
+Our main git branches:
+
+develop - main branch
+release/[YY_MM_name] - release branches (e.g. release/25_06_discovery)
+
+
+develop branch is deployed to INTG11
+release branch is deployed to INTG08
+
+
+
+
+
+
+
+
+Links to the environments
+
+
+UW use special links which do not
+require username and password.
+
+BR use their links which
+require username and password.
+
+INTG11
+
+    BROKER
+    CCL2: https://ccl2-ui-11.wsintg-brokers.iad.ca.inet/
+    Landing: https://landing-ui-11.wsintg-brokers.iad.ca.inet/contact-cl-landing-static/quotes
+
+    UNDERWRITER
+    CCL2: https://contact-cl-11-intg-cl-fullquote-appstatic-rg.apps.np.iad.ca.inet/contact-cl-pc-static/business-information
+    Landing: https://contact-cl-landing-static-11.intg.dsso.intactfc.com/contact-cl-landing-static/quotes
+
+INTG08
+
+    BROKER
+    CCL2: https://ccl2-ui-08.wsintg-brokers.iad.ca.inet/contact-cl-pc-static/triage/business-information
+    Landing: https://landing-ui-08.wsintg-brokers.iad.ca.inet/contact-cl-landing-static/quotes
+
+    UNDERWRITER
+    CCL2: https://contact-cl-pc-static-08.intg.dsso.intactfc.com/contact-cl-pc-static/business-information
+    Landing: https://contact-cl-landing-static-08.intg.dsso.intactfc.com/contact-cl-landing-static/quotes
+
+
+
+
+
+
+
+
+git repos
 
 Landing
 https://githubifc.iad.ca.inet/ContactCL/cl-landing-page-appstatic
@@ -369,17 +459,10 @@ Gating cycle.
 
 
 
+Which IDE to use with Angular?
 
-
-
-
-
-
-
-
-
-
-Which IDE to use, recommendation?
+- VS Code
+- IntelliJ
 
 I was using VS Code and other UI devs still use it.
 Now I am using IntelliJ
@@ -387,3 +470,118 @@ Now I am using IntelliJ
 
 
 
+
+
+
+
+
+
+
+How to run Angular app locally
+
+There might be different reasons why
+you are trying to run Angular app locally.
+Based on the reason there will be slightly
+different way of running the app.
+
+
+> ng serve
+
+It is the Angular CLI command to:
+
+- Compile your Angular app (TypeScript → JavaScript).
+- Bundle files (HTML, CSS, JS) for development.
+- Start a local dev server (default: http://localhost:4200).
+- Enable live-reload (auto-refreshes when you edit code).
+
+
+1) Start Angular app CCL2 from INTG11 locally
+
+> git checkout develop
+> git pull
+> ng serve
+
+If you need to quickly see how Angular app
+works in INTG11, you will use 'ng serve' this way.
+
+
+2) Start Angular app CCl2 for particular quote from INTG11
+
+I would need 'pd' value.
+
+- Open INTG11 Landing page
+- Search for a quote (e.g. Q02640454)
+- Click on this quote -> load CCl2 summary page
+- Click 'Edit' or 'Read only' to open this quote
+- This will open a nex tab. Open devtools.
+- Navigate to the next page and inspect Network tab in devtools
+- Search for 'contract' Fetch/XHR call and get 'contractVersionUuid'
+("ddea8ddc-ab0d-4d86-b105-8830ccc665de")
+- Start Angular app locally:
+
+> git checkout develop
+> git pull
+> ng serve
+
+- go to this url: http://localhost:4200?pd=ddea8ddc-ab0d-4d86-b105-8830ccc665de
+
+demo
+
+
+Disable live-reload
+
+demo with business-information.component.html
+
+> ng serve --live-reload=false
+
+
+3) Start Angular app CCL2 from INTG08 locally
+
+> git checkout release/25_06_discovery
+> git pull
+- change fqclConfig.json to this:
+"fullQuoteServiceURL": "https://contact-cl-08-intg-cl-fullquote-appstatic-rg.apps.np.iad.ca.inet/api",
+
+> ng serve
+
+
+
+4) Start Angular app CCl2 for particular quote from INTG08
+
+I would need 'pd' value.
+
+- Open INTG08 Landing page
+- Search for a quote (e.g. Q02640454)
+- Click on this quote -> load CCl2 summary page
+- Click 'Edit' or 'Read only' to open this quote
+- This will open a nex tab. Open devtools.
+- Navigate to the next page and inspect Network tab in devtools
+- Search for 'contract' Fetch/XHR call and get 'contractVersionUuid'
+("ddea8ddc-ab0d-4d86-b105-8830ccc665de")
+- Start Angular app locally:
+
+> git checkout develop
+> git pull
+- change fqclConfig.json to this:
+"fullQuoteServiceURL": "https://contact-cl-08-intg-cl-fullquote-appstatic-rg.apps.np.iad.ca.inet/api",
+
+> ng serve
+
+- go to this url: http://localhost:4200?pd=ddea8ddc-ab0d-4d86-b105-8830ccc665de
+
+
++ Add how to run Landing page
+
+
+In all the cases above, we used real, INTG11 or 08, rest layer
+with local UI (Angular).
+
+
+
+
+
+
+
+
++ how to run cbfq-project locally and connect Angular
++ how to run mock server locally and connect Angular

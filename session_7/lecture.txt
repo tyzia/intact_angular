@@ -8,7 +8,6 @@ Plan
 
 Intro to Angular
 SPA
-Component-based architecture
 Landing page and CCL2 app
 Users: BR, UW
 Main environments: INTG11,08
@@ -125,39 +124,6 @@ Cons
 
 - Steep learning curve (understanding of modules, dependencies, RxJS).
 - Larger bundle size vs lighter frameworks (React)
-
-
-
-
-
-
-
-
-
-Why is it component-based?
-
-
-You may have heard "Write once, use anywhere".
-Which means: we create a component and then reuse
-it across the app.
-
-In my opinion, it is more a marketing hype.
-Because, the effort to maintain this shared component
-is larger, than creating a new component.
-
-
-We use components in our Angular app for other reasons:
-
-1) Logical Separation of Concerns
-- Components isolate pages, sections or dialog popups.
-- Cleaner than dumping everything into a single file.
-
-2) Better Maintainability
-- Changes in one component don’t break others.
-- Easier to debug.
-
-3) Easier Team Collaboration
-- Different teams can work on different components.
 
 
 
@@ -497,17 +463,23 @@ It is the Angular CLI command to:
 
 1) Start Angular app CCL2 from INTG11 locally
 
+If you need to quickly see how Angular app
+works in INTG11, you will use 'ng serve' this way.
+
 > git checkout develop
 > git pull
 > ng serve
 
-If you need to quickly see how Angular app
-works in INTG11, you will use 'ng serve' this way.
+go to this url: http://localhost:4200
+
+
 
 
 2) Start Angular app CCl2 for particular quote from INTG11
 
 I would need 'pd' value.
+
+pd = policy details
 
 - Open INTG11 Landing page
 - Search for a quote (e.g. Q02640454)
@@ -544,6 +516,8 @@ demo with business-information.component.html
 
 > ng serve
 
+go to this url: http://localhost:4200
+
 
 
 4) Start Angular app CCl2 for particular quote from INTG08
@@ -570,7 +544,6 @@ I would need 'pd' value.
 - go to this url: http://localhost:4200?pd=ddea8ddc-ab0d-4d86-b105-8830ccc665de
 
 
-+ Add how to run Landing page
 
 
 In all the cases above, we used real, INTG11 or 08, rest layer
@@ -580,8 +553,63 @@ with local UI (Angular).
 
 
 
+5) Start Angular app CCL2 with mock server
+
+This is helpful when you develop a new feature
+or component and you don't need a real quote.
+
+/server - has all files for a mock server
+
+It is handled by Express.js framework.
+We mock any API calls in Express and return
+mock data to Angular.
+
+> node ./server/server.js
+
+Mock server will start on port 8090.
+
+> git checkout develop
+> git pull
+- change fqclConfig.json to this:
+"fullQuoteServiceURL": "http://localhost:8090",
+
+> ng serve
+
+- go to this url: http://localhost:4200
 
 
 
-+ how to run cbfq-project locally and connect Angular
-+ how to run mock server locally and connect Angular
+6) Start Angular Landing app from INTG11 locally
+
+> git checkout develop
+> git pull
+- change cllpConfig.json to this:
+"OTHER" : "https://contact-cl-11-intg-cl-landing-page-appstatic.apps.np.iad.ca.inet/api"
+
+> ng serve
+
+go to this url: http://localhost:4200
+
+
+
+
+
+
+
+Running with both Rest layer and Angular locally:
+
+https://intactfinancialgrp.atlassian.net/wiki/spaces/~rpzku652/pages/531837265/Running+CCL2+Locally
+
+
+
+To change port number:
+
+> ng serve --port 4201
+
+
+
+
+
+
+
+Thank you.

@@ -1,3 +1,38 @@
+Component-based architecture
+
+
+
+
+
+
+Why is it component-based?
+
+
+You may have heard "Write once, use anywhere".
+Which means: we create a component and then reuse
+it across the app.
+
+In my opinion, it is more a marketing hype.
+Because, the effort to maintain this shared component
+is larger, than creating a new component.
+
+
+We use components in our Angular app for other reasons:
+
+1) Logical Separation of Concerns
+- Components isolate pages, sections or dialog popups.
+- Cleaner than dumping everything into a single file.
+
+2) Better Maintainability
+- Changes in one component don’t break others.
+- Easier to debug.
+
+3) Easier Team Collaboration
+- Different teams can work on different components.
+
+
+
+
 
 
 

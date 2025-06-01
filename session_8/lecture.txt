@@ -1,14 +1,38 @@
-Component-based architecture
 
 
 
 
 
 
-Why is it component-based?
+Plan
+
+Components
+Style Encapsulation
+Modules
+Angular Material
+Bootstrap
+Tailwind
 
 
-You may have heard "Write once, use anywhere".
+
+
+
+
+
+
+
+
+Components
+
+
+
+
+
+
+Angular has a component-based architecture.
+
+
+You may hear about components: "Write once, use anywhere".
 Which means: we create a component and then reuse
 it across the app.
 
@@ -35,31 +59,7 @@ We use components in our Angular app for other reasons:
 
 
 
-
-Components
-
-Each component has 3-4 parts:
-
-- TS file to add logic.
-- HTML template file to control the view.
-- SPEC file to add unit tests.
-- SCSS file to control styling (optional).
-
-
-
 Project folder structure
-
-
-cbfq-rg-appstatic/
-.github - settings related to PRs
-docker - Docker settings
-projects - where our Angular app is
-server - Mock server if we need to run it locally
-- angular.json
-- package.json
-- tailwind.config.js
-
-
 
 
 cbfq-rg-appstatic/projects/cbfq-appstatic
@@ -72,45 +72,8 @@ utils
 
 
 
-We group components under 'modules'.
 
 
-Example 'Add Coverage' module
-https://githubifc.iad.ca.inet/ContactCL/cbfq-rg-appstatic/tree/develop/projects/cbfq-appstatic/src/app/modules/add-coverage
-
-
-
-The main file for the module is:
-add-coverage.module.ts
-
-This file defines any components,
-related to the module, in 'declarations'
-property of @NgModule() decorator.
-
-
-@NgModule({
-    declarations: [
-        SearchCoveragesComponent,
-        AddCoveragesDialogComponent,
-        ...
-    ]
-})
-
-Any time you will be creating a new component,
-you should add it to related module to 'declarations'.
-
-
-
-Syntax
-
-
-@NgModule({
-  declarations: [],   // Components/Directives/Pipes
-  imports: [],        // Other modules this module depends on
-  exports: [],        // What other modules can use (public API)
-  providers: [],      // Services used by the components in this module
-})
-export class FeatureModule {}
 
 
 
@@ -121,17 +84,28 @@ Components
 
 
 
+A component is a custom HTML element
+that bundles its own behavior, view,
+and styles into a single reusable unit.
 
 
 
 
-Each component in our app usually has
-at least 3 files:
 
-example.component.ts
-example.component.html
-example.component.spec.ts
-example.component.scss (optional)
+
+
+Each component has 3 or 4 parts:
+
+- TS file to add logic -> example.component.ts
+- HTML template file to control the view -> example.component.html
+- SPEC file to add unit tests -> example.component.spec.ts
+- SCSS file to control styling (optional) -> example.component.scss
+
+
+
+
+
+
 
 
 
@@ -140,7 +114,9 @@ example.component.scss (optional)
 Syntax
 
 
+1) Logic of component
 example.component.ts
+
 @Component({
   selector: 'app-example',
   templateUrl: './example.component.html',
@@ -152,10 +128,14 @@ export class ExampleComponent {
 
 The selector should be unique and start with 'app-'.
 
+2) View of the component
 example.component.html
+
 <p class='hello'>Hello world</p>
 
+3) Styles of the component
 example.component.scss
+
 .hello { font-size: 2rem; }
 
 
@@ -163,7 +143,7 @@ example.component.scss
 
 
 
-Example of using this component in other template:
+Example of using this component in other component:
 
 other-place.component.html
 <div>
@@ -195,6 +175,7 @@ only apply to that component's template.
 
 Example
 
+blue-text.component.ts
 @Component({
   selector: 'app-blue-text',
   template: `<div class="hello">I'm blue text</div>`,
@@ -207,6 +188,7 @@ Example
 })
 export class BlueTextComponent {}
 
+red-text.component.ts
 @Component({
   selector: 'app-red-text',
   template: `<div class="hello">I'm red text</div>`,
@@ -228,7 +210,7 @@ The app:
 
 
 To make sure that styles are correctly
-applied to each component, Angular will do:
+applied to each component, Angular will:
 
 1. Add unique attribute to HTML component.
 2. Update css of the component using this attribute.
@@ -263,3 +245,468 @@ Styles
 
 
 
+
+
+
+
+
+We group components under 'modules'.
+
+
+
+Syntax
+
+
+@NgModule({
+  declarations: [],   // Components/Directives/Pipes
+  imports: [],        // Other modules this module depends on
+  exports: [],        // What other modules can use (public API)
+  providers: [],      // Services used by the components in this module
+})
+export class FeatureModule {}
+
+
+
+
+
+Example 'Add Coverage' module
+https://githubifc.iad.ca.inet/ContactCL/cbfq-rg-appstatic/tree/develop/projects/cbfq-appstatic/src/app/modules/add-coverage
+
+
+
+The main file for the module is:
+add-coverage.module.ts
+
+
+
+add-coverage.module.ts defines any components,
+related to the module, in 'declarations'
+property of @NgModule() decorator.
+
+
+@NgModule({
+    declarations: [
+        SearchCoveragesComponent,
+        AddCoveragesDialogComponent,
+        ...
+    ]
+})
+
+Any time you will be creating a new component,
+you should add it to related module to 'declarations'.
+
+
+
+
+
+
+
+
+
+
+Angular Material
+
+
+
+
+- A UI component library built by the Angular team
+- Provides pre-built components
+(buttons, dialogs, forms, tables).
+- Integrates seamlessly with Angular
+(no jQuery or external dependencies).
+
+
+
+
+
+
+
+Why use it?
+- Saves development time.
+- Consistent, polished look.
+- Built-in accessibility
+- Build-in responsiveness
+
+
+
+
+
+
+Angular Material Components
+
+It offers 40+ ready-to-use components:
+- MatButton
+- MatCard
+- MatDialog
+- MatInput
+etc
+
+
+
+
+
+
+
+
+Angular Material Directives
+- matTooltip
+
+
+
+
+
+
+Example
+
+HTML
+<button>Click Me</button>
+
+CSS
+{ ... custom styles so that button looks good ... }
+
+
+
+HTML (with Material)
+<button mat-raised-button color="primary">Click Me</button>
+
+Demo:
+
+https://stackblitz.com/edit/angular-material-example-d8xnsyzy?file=app%2Fapp.component.html
+
+
+
+
+
+
+
+
+Key Benefits
+- Consistency: Follows Material Design principles.
+- Accessibility: ARIA support out of the box.
+- Responsive: Works on mobile/desktop.
+- Angular-Optimized: Uses Angular’s change detection efficiently.
+
+
+
+
+
+
+
+
+
+
+
+Bootstrap
+
+
+
+
+
+
+
+
+
+
+
+Bootstrap is a popular front-end framework.
+
+It has utility classes predefined and a grid system.
+
+Essentially they allow to divide any container into
+12 columns. Next, I can use classes to specify the
+width of these "columns":
+
+I need to use this class structure in my HTML
+if I want to use grid system from Bootstrap:
+
+
+.row {
+    .col-[number] { }
+}
+
+
+
+Example
+
+HTML
+
+<div class="row">
+    <div class="col-6">Left Column (50%)</div>
+    <div class="col-6">Right Column (50%)</div>
+</div>
+
+This will divide the full width of my
+container into two equal parts:
+
+6 columns out of 12 possible for "Left Column"
+6 columns out of 12 possible for "Right Column"
+
+6 + 6 = 12.
+As these two columns will take all 12 possible columns
+there will be no space left on the page.
+
+
+
+
+Example
+
+<div class="row">
+    <div class="col-2">Left Column (1/6th)</div>
+    <div class="col-6">Right Column (50%)</div>
+</div>
+
+In this example I will have one narrow Left column:
+
+2 columns out of 12 possible for "Left Column"
+6 columns out of 12 possible for "Right Column"
+
+2 + 6 = 8.
+
+These two columns do not take the full 12 column
+width, as they only take 8 columns. The rest (4 columns)
+will be empty space on my page to the right.
+
+
+
+
+
+
+
+
+Bootstrap allows to control responsiveness:
+
+Breakpoints
+
+
+
+
+
+
+default or none
+
+example: .col-6
+This class will be applied only on max-width: 576px
+
+sm
+
+example: .col-sm-6
+This class will be applied only on
+min-width: 576px and max-width: 768px
+
+
+md
+
+example: .col-md-6
+This class will be applied only on
+min-width: 768px and max-width: 992px
+
+
+lg
+
+example: .col-lg-6
+This class will be applied only on
+min-width: 992px and max-width: 1200px
+
+
+xl
+
+example: .col-xl-6
+This class will be applied only on
+min-width: 1200px and max-width: 1400px
+
+
+xxl
+
+example: .col-xxl-6
+This class will be applied only on
+min-width: 1400px
+
+
+
+
+
+
+
+
+
+
+Online example:
+
+https://getbootstrap.com/docs/5.3/examples/grid/
+
+
+
+
+
+
+
+
+Tailwind
+
+
+
+
+
+
+
+
+Tailwind is a CSS framework
+that lets you style HTML by
+applying pre-defined classes
+directly in your markup
+without writing CSS.
+
+
+
+
+
+Why Tailwind?
+- Speed: No switching between HTML/CSS files.
+- Consistency: Reuse same classes everywhere.
+- Simple class names.
+
+
+
+
+Docs:
+https://tailwindcss.com/docs/font-size
+
+
+
+Example
+
+HTML
+<span>hello world</span>
+
+CSS
+span { font-size: 16px; }
+
+Tailwind
+<span class="text-base">hello world</span>
+
+.text-base -> font-size: 16px;
+
+
+
+
+Example
+
+HTML
+<div>
+    <p>hello</p>
+    <p>world</p>
+</div>
+
+CSS
+div { display: flex; flex-direction: column; }
+
+
+Tailwind
+<div class="flex flex-col">
+    <p>hello</p>
+    <p>world</p>
+</div>
+
+.flex -> display: flex;
+.flex-col -> flex-direction: column;
+
+
+
+
+
+
+Prefix (tw-)
+
+
+In our CCL2 app we use custom prefix
+for all our Tailwind classes:
+
+tw-
+
+
+So:
+
+.text-base -> .tw-text-base
+.flex -> .tw-flex
+.flex-col -> .tw-flex-col
+
+
+
+
+
+
+
+Configuration
+
+
+
+
+
+tailwind.config.js
+This file has all predefined values.
+
+
+
+Spacing
+
+CSS
+margin-left: 12px;
+padding: 24px;
+
+TW
+.tw-ml-12;
+.tw-p-24;
+
+
+Colors
+
+CSS
+color: #e05e00
+background-color: #dfecea;
+
+TW
+.tw-text-e05e00
+.tw-bg-dfecea
+
+
+
+
+
+
+
+
+
+
+Official Sandbox
+https://play.tailwindcss.com/
+
+
+
+
+
+
+In our app we currently have a hybrid:
+
+1. Custom CSS
+2. Angular Material styles
+3. Bootstrap
+4. Tailwind
+
+
+
+
+
+
+When we add new components - the direction is
+to use only Tailwind.
+
+When we update old components - we can keep old
+styling as well.
+
+
+
+
+
+
+
+Thank you

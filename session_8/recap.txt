@@ -1,0 +1,57 @@
+Recap Session 7
+(delivered on Session 8)
+
+
+
+Angular is a front-end framework.
+It allows to create SPA (single-page application)
+We have Angular v17.
+
+SPA loads single file with JS and
+refreshes the content of the page
+without reloading the page itself.
+
+We have 2 Angular apps:
+
+1. Landing Page App
+2. CCL2 Main App
+
+Primary environments:
+- INTG11 (develop branch)
+- INTG08 (release branch)
+
+User types:
+- Brokers (external)
+- Underwriters (internal)
+
+git workflow
+
+- Base branch: develop
+- Branch naming: Jira ticket# (BROKER-4240)
+- PR requirements:
+  * Descriptive title with ticket#
+  * Detailed description with screenshots
+  * 2 approves
+  * Passing ARS Junior tests
+
+Open CCL2 locally
+
+- ng serve -> http://localhost:4200
+- ng serve --port 4201 -> http://localhost:4201
+- ng serve --live-reload=false
+
+Open CCL2 with specific quote locally
+
+Open quote in INTG11
+Using devtools, get contractVersionUuid from /contract call
+(contractVersionUuid -> ddea8ddc-ab0d-4d86-b105-8830ccc665de)
+> ng serve
+http://localhost:4200?pd=ddea8ddc-ab0d-4d86-b105-8830ccc665de
+
+Open CCL with mock server
+
+Update fqclConfig.json to:
+"fullQuoteServiceURL": "http://localhost:8090"
+
+> node ./server/server.js (Mock server)
+> ng serve (Angular)

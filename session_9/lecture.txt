@@ -1,0 +1,263 @@
+
+
+
+
+
+
+Plan
+
+Interpolation
+Property Binding
+Event Binding
+Structural Directives
+  *ngIf (Conditional Rendering)
+  *ngFor (Lists & Looping)
+Attribute Directives
+Styling Demo
+
+
+
+
+
+Angular Templates define the view
+using HTML and Angular syntax.
+
+If we want to add or bind data
+into our components we need 'data binding'.
+
+For instance, I want to:
+
+- pass data into component
+- dynamically update attribute/property
+- react to events
+
+Types of data binding:
+
+- interpolation {{ ... }}
+- property binding [property]="value"
+- event binding (event)="handler()"
+
+
+
+
+
+
+Examples:
+
+Interpolation {{ }}
+is used for text content.
+
+component.html
+<div>
+
+  <p>Hello World!</p>
+
+  <p>{{ dynamicMessage }}</p>
+  <p>My name is {{ name }}</p>
+
+</div>
+
+component.ts
+export class ExampleComponent {
+    dynamicMessage = 'hello world';
+    name = 'Andrei';
+}
+
+
+Property binding []
+is used for html attributes
+
+component.html
+<div>
+
+    <img src="/assets/images/icon.svg" alt='logo'>
+    <img [src]="imageSource" alt='logo'>
+
+    <button [disabled]="isDisabled">Submit</button>
+
+</div>
+
+component.ts
+export class ExampleComponent {
+    imageSource: string;
+    isDisabled: boolean = true;
+
+    ngOnInit(): void {
+        imageSource = isFrench ? 'logo_fr.svg' : 'logo_en.svg';
+    }
+}
+
+
+Event binding ()
+is used when event occurs (click, blur, submit)
+
+component.html
+<div>
+
+    <button (click)="onClick()">Send</button>
+
+    <form (submit)="onSubmit($event)">
+         <button type=Submit>Submit</button>
+    </form>
+
+</div>
+
+component.ts
+export class ExampleComponent {
+    onClick() {
+        ...
+    }
+    onSubmit(e: Event) {
+        e.preventDefault();
+        ...
+    }
+}
+
+
+
+
+Structural directives
+
+Help control whether and how elements
+appear in your Angular templates.
+They're like "HTML superpowers" that let you:
+
+- Show/hide elements based on conditions (*ngIf)
+- Repeat elements for lists (*ngFor)
+
+
+
+Examples
+
+If condition *ngIf
+
+component.html
+
+<div *ngIf="isLoggedIn">
+  Welcome back!
+</div>
+
+<div *ngIf="!isLoggedIn">
+  Please log in.
+</div>
+
+component.ts
+export class ExampleComponent {
+    isLoggedIn: boolean;
+
+    ngOnInit(): void {
+        isLoggedIn = condition ? true : false;
+    }
+}
+
+
+Repeat with *ngFor
+The "For Loop" for HTML
+
+Repeats an element for each item in a list.
+
+component.html
+
+<ul>
+  <li *ngFor="let item of shoppingList">
+    {{ item.name }}
+  </li>
+</ul>
+
+component.ts
+export class ExampleComponent {
+    shoppingList = [
+        { name: "Apples" },
+        { name: "Bananas" },
+        { name: "Milk" },
+    ];
+}
+
+Result:
+
+<ul>
+  <li>Apples</li>
+  <li>Bananas</li>
+  <li>Milk</li>
+</ul>
+
+
+Combination & nesting
+
+<ul *ngIf="showList">
+  <li *ngFor="let product of products">
+      {{ product.name }} - ${{ product.price }}
+  </li>
+</ul>
+
+export class ProductComponent {
+    showList: boolean = true;
+    products = [
+        { name: "Laptop", price: 999 },
+        { name: "Headphones", price: 149 },
+        { name: "Mouse", price: 25 },
+    ];
+}
+
+Result:
+
+<ul>
+  <li>Laptop - $999</li>
+  <li>Headphones - $149</li>
+  <li>Mouse - $25</li>
+</ul>
+
+
+
+
+Nested ngIf
+
+<div *ngIf="user.isPremium">
+  <h2>Premium Dashboard</h2>
+  <div *ngIf="user.remainingDownloads > 0">
+    You have {{ user.remainingDownloads }} downloads left!
+  </div>
+  <div *ngIf="user.remainingDownloads === 0">
+    You've used all your downloads.
+  </div>
+</div>
+
+export class UserComponent {
+  user = {
+    isPremium: true,
+    remainingDownloads: 3
+  };
+}
+
+
+
+
+Attribute directives
+
+ngClass
+Applies CSS classes conditionally.
+
+
+<div [ngClass]="{ 'active': isActive, 'inactive': !isActive }">
+  ...
+</div>
+
+css:
+.active { background-color: white }
+.inactive { background-color: gray }
+
+export class UserComponent {
+  isActive: boolean = true;
+}
+
+Here:
+
+When isActive = true
+Applies .active class (white background)
+
+When isActive = false
+Applies .inactive class (gray background)
+
+
+
+Styling Demo

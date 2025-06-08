@@ -1,0 +1,75 @@
+Recap Session 8
+(delivered on Session 9)
+
+Angular component is a custom HTML element.
+It can be reused anywhere in the app.
+
+Component:
+
+- Logic (TypeScript)
+- View (HTML)
+- Unit tests (SPEC)
+- Styles (SCSS), optional
+
+Why Use Components?
+
+- Better organization
+- Easier maintenance
+- Team collaboration
+
+Example:
+
+typescript
+@Component({ selector: 'app-example', ... })
+export class ExampleComponent { message = 'Hello!'; }
+
+html
+<p>{{ message }}</p>
+
+Style Encapsulation
+
+Angular scopes styles to components
+using unique attributes.
+
+Example:
+
+.hello in one component won’t
+affect another component styling.
+
+Modules
+
+Group related components.
+
+@NgModule({
+    declarations: [components, directives],
+    imports: [other modules],
+    exports: [public API],
+    providers: [services]
+})
+
+UI Frameworks
+
+Angular Material
+Official UI library
+with prebuilt component
+(buttons, dialogs, etc.)
+
+Example:
+<button mat-button>Click</button>
+
+Bootstrap
+
+Grid system (12 columns)
+Responsive classes (.col-md-6)
+
+Tailwind
+
+Utility-first CSS
+(e.g., tw-flex tw-bg-blue)
+
+CCL2 uses tw- prefix
+
+Current Approach:
+
+- New components → Tailwind
+- Old components → Keep existing styles

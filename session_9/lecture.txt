@@ -260,4 +260,200 @@ Applies .inactive class (gray background)
 
 
 
+
 Styling Demo
+
+
+
+
+1. Open Figma
+https://www.figma.com/design/Lp0enNKTWskMpxVytXmiN1/FQNB-Enhancements?node-id=5917-61312&p=f&t=27EwXVzqZMzjqMk2-0
+
+
+2. Create a component inside total-premium module
+> mkdir adjust-premium-demo
+> cd adjust-premium-demo
+create adjust-premium-demo.component.ts
+create adjust-premium-demo.component.html
+create adjust-premium-demo.component.scss
+
+3. Open ts file:
+
+export class AdjustPremiumDemoComponent {}
+
+@Component({})
+
+alt+enter -> add import
+
+selector: 'app-adjust-premium-demo',
+
+templateUrl: './adjust-premium-demo.component.html'
+
+warning: AdjustPremiumDemoComponent is not declared
+in any Angular module.
+
+go to offer.module.ts and add to declarations:
+
+AdjustPremiumDemoComponent,
+
+alt+enter -> add import
+
+open adjust-premium-demo.component.html
+
+<p>hello world</p>
+
+Because it is a dialog we need to open
+this dialog on button click on Offer page.
+
+open total-premium.component.ts
+
+line 76: openDialog()
+
+this.dialog.open(AdjustPremiumDemoComponent);
+
+alt+enter -> add import
+
+comment out the rest
+
+start Angular mock server + Angular
+
+click on Adjust Premium
+
+Let's use Angular material:
+
+<mat-dialog-content>
+  <p>hello world</p>
+</mat-dialog-content>
+
+click on Adjust Premium
+
+Let's add interpolation:
+
+message: string = 'this comes from component';
+
+and update template:
+
+<p>{{ message }}</p>
+
+In Figma see padding for dialog: 56px 40px 40px 40px
+
+in template add class:
+
+<mat-dialog-content class="adjust-premium-demo">
+
+and in scss file:
+
+.adjust-premium-demo {
+  padding: 56px 40px 40px 40px;
+}
+
+But style is not applied.
+
+in ts file:
+
+styleUrls: ['./adjust-premium-demo.component.scss'],
+
+show specificity and why my style is not applied
+
+Make more specific with id:
+
+<mat-dialog-content id="adjust-premium-demo">
+  <p>{{ message }}</p>
+</mat-dialog-content>
+
+#adjust-premium-demo {
+  padding: 56px 40px 40px 40px;
+}
+
+Next apply Tailwind:
+
+<mat-dialog-content id="adjust-premium-demo" class="tw-p-[56px_40px_40px_40px]">
+
+Show that specificity is not enough
+
+Let's apply Tailwind through id:
+
+@apply tw-p-[56px_40px_40px_40px];
+
+Now let's add title:
+
+<h1>Adjust premium</h1>
+
+It's font-size is 32px, I need 24px
+
+go to Tailwind docs and search for font-size
+
+<h1 class="tw-text-2xl">Adjust premium</h1>
+
+Let's set text in the middle
+
+<h1 class="tw-text-2xl tw-text-center">Adjust premium</h1>
+
+Let's update the color:
+
+<h1 class="tw-text-2xl tw-text-center tw-text-333333">Adjust premium</h1>
+
+Let's add one more element:
+
+<div>
+    <div>
+      <p>Recommended premium is being applied</p>
+      <p>By applying the recommended premium, you can increase price stability year over year and build a more profitable portfolio.</p>
+      </div>
+    <img src="" alt="">
+  </div>
+
+
+How to export image from Figme?
+
+1. Select the image in Figma.
+2. In the right panel, find the "Export" section.
+3. Click the "+" button to add an export setting.
+4. Choose the format (SVG).
+5. Click the "Export" button.
+6. Save the file to your project directory
+(e.g., `assets/images/icons/adjust-premium/best_price.svg`).
+
+<img src="assets/images/icons/adjust-premium/best_price.svg" alt="Recommended Premium">
+
+Missing required 'alt' attribute.
+
+Add empty alt
+
+<img ngSrc="assets/images/icons/adjust-premium/best_price.svg" width="80" height="80" alt>
+
+Add aria-hidden=true to hide image from screen readers
+
+and we have:
+
+<div>
+    <div>
+      <p>Recommended premium is being applied</p>
+      <p>By applying the recommended premium, you can increase price stability year over year and build a more profitable portfolio.</p>
+      </div>
+    <img ngSrc="assets/images/icons/adjust-premium/best_price.svg" width="80" height="80" aria-hidden="true" alt>
+  </div>
+
+
+Add padding 16px:
+
+<div class="tw-p-16">
+
+Let's add border:
+
+<div class="tw-p-16 tw-border tw-border-d8d8d8 tw-rounded-[4px]">
+
+Now let's make them in two columns:
+
+add display: flex and set the gap
+
+next apply colors to paragraphs and result:
+
+<div class="tw-p-16 tw-border tw-border-d8d8d8 tw-rounded-[4px] tw-flex tw-gap-8 tw-text-333333">
+    <div>
+      <p class="tw-text-sm tw-font-medium">Recommended premium is being applied</p>
+      <p class="tw-text-sm">By applying the recommended premium, you can increase price stability year over year and build a more profitable portfolio.</p>
+      </div>
+    <img ngSrc="assets/images/icons/adjust-premium/best_price.svg" width="80" height="80" aria-hidden="true" alt>
+  </div>
+

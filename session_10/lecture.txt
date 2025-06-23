@@ -17,17 +17,6 @@ Angular provides wwo approaches:
 - Reactive Forms (Model-driven, using FormGroup, FormControl)
 - Template-Driven Forms (Using [(ngModel)] and directives)
 
-
-Reactive Forms
-
-Use:
-
-- FormControl
-- FormGroup
-- FormArray
-
-Demo how to create a simple form.
-
 Which to use?
 
 Reactive forms:
@@ -40,4 +29,75 @@ Template-driven forms:
 
 - Simple forms
 - Basic validation with HTML5 attributes
+
+Demo
+
+Template-driven forms.
+
+In your component you would have an object to track
+the state of your field.
+
+Tracking is done with two-way data binding: [(ngModel)].
+
+For example:
+
+component.ts
+export class ExampleComponent {
+    field: string = 'some text';
+    logInput(): void {
+        console.log(this.field);
+    }
+}
+
+component.html
+<input type="text" [(ngModel)]="field" (input)="logInput()">
+
+
+
+Reactive Forms
+
+Use FormControl, FormGroup, FormArray
+
+We will have a form model in our component
+to track the state of our form.
+
+For example:
+
+component.ts
+export class ExampleComponent {
+      newField = new FormControl('initial value');
+      ngOnInit(): void {
+        this.newField.valueChanges.subscribe(value => console.log(value))
+      }
+}
+
+component.html
+<input type="text" [formControl]="newField">
+
+
+Demo:
+
+in component.ts
+newField: FormControl = new FormControl('');
+  newField2: FormControl = new FormControl('initial value');
+  newField3: FormControl = new FormControl('initial value');
+
+in component.html
+
+  <input type="text" [formControl]="newField">
+  <input type="text" [formControl]="newField2">
+  <input type="text" [formControl]="newField3">
+
+Using FormGroup
+
+group: FormGroup = new FormGroup({
+    hello: new FormControl('hello'),
+    world: new FormControl('world'),
+  });
+
+component.html
+<form action="" [formGroup]="group">
+    <input type="text" formControlName="hello">
+    <input type="text" formControlName="world">
+  </form>
 

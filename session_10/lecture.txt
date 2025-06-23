@@ -1,0 +1,43 @@
+
+Forms in Angular
+
+Why forms?
+
+Forms are essential for user input.
+In our CCL2 app we use forms for:
+
+- searching (quotes, broker codes, coverages, etc)
+- selection (dropdowns)
+- inputs (business name, prior insurer)
+- getting answers (is policy change? is new business?)
+- saving data
+
+Angular provides wwo approaches:
+
+- Reactive Forms (Model-driven, using FormGroup, FormControl)
+- Template-Driven Forms (Using [(ngModel)] and directives)
+
+
+Reactive Forms
+
+Use:
+
+- FormControl
+- FormGroup
+- FormArray
+
+Demo how to create a simple form.
+
+Which to use?
+
+Reactive forms:
+
+- Complex forms with dynamic fields
+- Cross-field validation
+- Programmatic control over field state (disabled)
+
+Template-driven forms:
+
+- Simple forms
+- Basic validation with HTML5 attributes
+

@@ -1,0 +1,132 @@
+Recap Session 9
+(delivered on Session 10)
+
+Data binding = when we add data from
+component into view
+
+- interpolation (for text content)
+- property binding (for html attributes)
+- event binding (for events: click, submit, blur)
+
+
+Interpolation
+{{ variable }}
+
+Example
+
+component.ts
+export class ExampleComponent {
+    name = 'Andrei';
+}
+
+component.html
+<p>My name is {{ name }}</p>
+
+Property binding
+[property]="value"
+
+Example
+
+component.ts
+export class ExampleComponent {
+    isDisabled: boolean = true;
+}
+
+component.html
+<button [disabled]="isDisabled">Submit</button>
+
+
+Event binding
+(event)="handler()"
+
+component.ts
+export class ExampleComponent {
+    onClick() { console.log('button clicked'); }
+}
+
+component.html
+<button (click)="onClick()">Send</button>
+
+
+Structural directives
+
+*ngIf - Show/hide elements
+*ngFor - Repeat elements
+
+If condition
+
+component.ts
+export class ExampleComponent {
+    isLoggedIn: boolean = false;
+}
+
+component.html
+<p *ngIf="isLoggedIn">Welcome back!</p>
+<p *ngIf="!isLoggedIn">Please log in.</p>
+
+
+For loop
+
+component.ts
+export class ExampleComponent {
+    shoppingList = [
+        { name: "Apples" },
+        { name: "Bananas" },
+        { name: "Milk" },
+    ];
+}
+
+component.html
+<ul>
+  <li *ngFor="let item of shoppingList">
+    {{ item.name }}
+  </li>
+</ul>
+
+Result in browser:
+
+<ul>
+  <li>Apples</li>
+  <li>Bananas</li>
+  <li>Milk</li>
+</ul>
+
+Combination
+
+<ul *ngIf="showList">
+  <li *ngFor="let product of products">
+      {{ product.name }} - ${{ product.price }}
+  </li>
+</ul>
+
+Nesting
+
+<div *ngIf="user.isPremium">
+  <div *ngIf="user.remainingDownloads > 0">
+    You have {{ user.remainingDownloads }} downloads left!
+  </div>
+</div>
+
+
+Attribute directive ngClass
+Applies CSS classes conditionally.
+
+Example
+
+export class UserComponent {
+  isActive: boolean = true;
+}
+
+css:
+.active { background-color: white }
+.inactive { background-color: gray }
+
+
+<div [ngClass]="{
+   'active': isActive,
+   'inactive': !isActive
+}">
+  Hello world
+</div>
+
+

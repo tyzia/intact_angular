@@ -1,0 +1,432 @@
+
+
+
+
+Observables in Angular
+
+
+Streams
+Vanilla JS to handle async
+Reactive nature of Angular
+Observables
+Subscriptions
+RxJS
+
+
+
+
+
+
+
+
+Stream of data.
+
+It is a sequence of values delivered over time.
+
+For example, we have a code which
+produces a number each second:
+
+1, 2, 3, 4, ...
+
+The code "producing" the numbers is server.
+
+The code "consuming" the numbers is client.
+
+For the client, numbers come asynchronously,
+meaning, the client has no control over when and how
+numbers are produced.
+
+
+
+
+
+Vanilla JS to handle async
+
+
+To handle data streams in vanilla JS
+we can use two different approaches:
+
+- Push
+- Polling
+
+Push-based approach implies that server
+"pushes" or sends data to the client
+automatically when data is available.
+
+Polling-based approach implies that
+client repeatedly asks the server
+for the data.
+
+Examples
+
+Push:
+
+- WebSockets.
+- Server-Sent Events.
+
+With WebSocket there is a persistent connection
+between server and client, and server pushes the
+data through the WebSocket to the client once
+the data is available.
+
+Cons:
+
+- Server-side: Requires WebSocket support
+- Client-side (JS): more complex than HTTP request
+
+With SSE server sends data over a single HTTP connection.
+
+
+Polling:
+
+- setInterval() + fetch()
+
+fetch() returns a Promise.
+
+A Promise represents a value that will be
+available in the future.
+
+It can have two states:
+
+- Resolve: returns data
+- Reject: returns error
+
+.then() - in case promise resolves
+.catch() - in case promise is rejected
+
+Example:
+
+fetch('url')
+   .then(response => ...)
+   .catch(error => ...)
+
+
+
+
+Reactive nature of Angular
+
+Angular by design is created to work with
+reactive approach and observables.
+
+It operates with notions of data streams
+which are not easily implemented with vanilla JS.
+
+For this reason any async operation in Angular is
+wrapped into Observable.
+
+
+
+Observables
+
+We use term "observable" for the async stream of data.
+In other words: "observable is a stream of data which we observe".
+
+Observable is a core part of RxJS library
+(Reactive Extensions for JavaScript)
+which we use in Angular to handle main async operations.
+
+Async operations in Angular:
+
+- Form control value changes
+- HTTP requests (GET, POST)
+- Async flags
+(features have loaded, new ContractSummary received, etc.)
+
+
+Subscription
+
+In RxJS, a Subscription represents your connection
+to an Observable.
+
+With subscription you can:
+
+- Start receiving values from the observable.
+- Stop receiving values when you’re done.
+
+Real-world analogy - Newsletter subscription:
+
+You need to subscribe to a newsletter,
+in order to start receiving news.
+
+You can cancel your subscription.
+
+If you don't subscribe to the newsletter,
+this doesn't mean that there is no news coming,
+but you do not receive them.
+
+Unsubscribe
+
+If we want to stop receiving values from the
+Observable, we need to unsubscribe from it.
+
+Usually, we unsubscribe inside ngOnDestroy() hook,
+which is invoked by Angular when component is
+destroyed.
+
+We always need to unsubscribe from the observables
+to prevent memory leaks.
+
+How a memory leak can happen?
+
+1) We have state service which exposes an
+observable newContractSummary$ which emits a
+boolean value when new contract summary
+is created.
+
+2) We have a component A, in its ngOnInit()
+we subscribe to state service:
+
+component A
+
+isEnabled: boolean;
+ngOnInit(): void {
+    this.stateService.newContractSummary$.
+        subscribe(isNewContract => this.isEnabled = !isNewContract);
+}
+
+3) As you can see, we don't unsubscribe from this Observable.
+
+4) After we navigate to the next page,
+Angular will destroy component A instance,
+but because stateService has an Observable
+newContractSummary$, and this Observable has a list
+of subscribers (to who emit values to)
+it still "holds" the reference to component A instance.
+
+5) The component A instance is still retained in
+memory by JavaScript due to active subscription,
+even though Angular has destroyed it.
+
+This instance is not "live" in terms that Angular
+does not track it anymore, it destroyed this component A.
+
+6) Because the component instance remains in memory
+unnecessarily, this is a memory leak.
+
+
+How to properly unsubscribe?
+
+isEnabled: boolean;
+stateServiceSubscription: Subscription;
+ngOnInit(): void {
+    this.stateServiceSubscription =
+        this.stateService.newContractSummary$.
+            subscribe(isNewContract => this.isEnabled = !isNewContract);
+}
+
+ngOnDestroy(): void {
+    this.stateServiceSubscription.unsubscribe();
+}
+
+
+Or when we have many subscriptions,
+we can use this approach:
+
+component A
+
+private subscriptions = new Subscription();
+
+ngOnInit() {
+  this.subscriptions.add(
+    this.stateService.newContractSummary$
+      .subscribe(flag => this.isEnabled = !flag)
+  );
+  this.subscriptions.add(
+      this.stateService.newContract$
+        .subscribe(flag => this.isEnabled = flag)
+    );
+}
+
+ngOnDestroy() {
+  this.subscriptions.unsubscribe();
+}
+
+
+
+
+Emit
+
+When an observable produces a new value in
+its stream, we say it emits a value.
+
+Complete
+
+After observable has emitted all values,
+it completes (finishes).
+After observable completes no more values are emitted.
+The observable automatically is unsubscribed
+after it completes.
+
+
+
+
+
+RxJS operators
+
+These operators help us handle async tasks
+with ease.
+
+
+of()
+
+Creates an Observable from fixed values.
+It emits the values immediately, one after another
+and then completes.
+
+Example
+
+const numbers$ = of(1, 2, 3);
+
+numbers$.subscribe(value => console.log(value));
+
+// 1
+// 2
+// 3
+
+
+pipe()
+
+Combines multiple RxJS operators in a chain.
+It allows me to use operators on my observable.
+
+Example
+
+const numbers$ = of(1, 2, 3, 4);
+
+numbers$.pipe(
+  filter(x => x % 2 === 0), // only even
+  map(x => x * 10)
+).subscribe(console.log);
+
+// 20
+// 40
+
+I can't do this (without pipe()):
+
+numbers$
+    .filter(x => x % 2 === 0)
+    .subscribe(console.log);
+
+Because observable numbers$ doesn't have method .filter().
+I must use pipe() if I want to apply operators to
+observable.
+
+
+filter()
+
+Emits only the values that pass the condition.
+
+Example
+
+const numbers$ = of(1, 2, 3, 4, 5);
+
+const numbers$.pipe(
+  filter(x => x % 2 === 0)
+).subscribe(console.log);
+
+// 2
+// 4
+
+
+map()
+
+Transforms each emitted value.
+
+Example
+
+const numbers$ = of(1, 2, 3);
+
+numbers$.pipe(
+  map(x => x * 10)
+).subscribe(console.log);
+
+// 10
+// 20
+// 30
+
+
+Operators filter() and map() modify the stream.
+
+Example
+
+of(1, 2, 3, 4).pipe( // 1, 2, 3, 4
+  filter(x => x % 2 === 0), // 2, 4
+  map(x => x * 10), // 20, 40
+).subscribe();
+
+
+tap()
+
+Lets you run side effects without modifying the stream.
+
+Example
+
+of(1, 2, 3).pipe(
+  tap(value => ... do something with value ...),
+).subscribe(console.log);
+
+// 1
+// 2
+// 3
+
+of(1, 2, 3).pipe(
+  tap(value => ... do something with 1, 2, 3 ...),
+  filter(x => x < 2),
+  tap(value => ... do something with 1 ...),
+).subscribe(console.log);
+
+// 1
+
+
+What if I need to run two async operations?
+
+For example, once I get one HTTP response,
+I would like to make another HTTP call. But only
+if first HTTP call is finished.
+
+1) HTTP call to get user by user ID
+this.http.get(`/api/users/${userId}`)
+
+2) HTTP call to get orders by user name
+this.http.get(`/api/orders?userName=${user.name}`)
+
+
+concatMap()
+
+It queues observables and executes them one after the other.
+
+Example:
+
+userId = '123';
+
+const getUser$ = this.http.get(`/api/users/${userId}`);
+
+getUser$.pipe(
+  concatMap(user => this.http.get(`/api/orders?userName=${user.name}`))
+).subscribe(console.log);
+
+
+Another example
+
+You want to run multiple HTTP calls in parallel
+You have a list of user IDs, and you want to fetch
+each user's orders at the same time.
+
+I will use mergeMap()
+
+Useful when each outer value triggers
+an async task, and you want parallel execution.
+
+Example
+
+userIds$ = of('123', '456', '789');
+
+userIds$.pipe(
+  mergeMap(userId => this.http.get(`/api/orders?userId=${userId}`))
+).subscribe(console.log);
+
+
+
+
+
+Thank you

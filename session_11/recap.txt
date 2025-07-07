@@ -1,0 +1,64 @@
+Recap Session 10
+(delivered on Session 11)
+
+Forms in Angular:
+
+- Template-driven forms
+- Reactive forms
+
+Template-driven forms:
+
+- Simple forms
+- Basic validation with HTML5 attributes
+
+Reactive forms:
+
+- Complex forms with dynamic fields
+- Cross-field validation
+- Programmatic control over field state (disabled)
+
+Example
+
+Template-driven form
+
+component.ts
+export class ExampleComponent {
+    field: string = 'some text';
+    logInput(): void { console.log(this.field); }
+}
+
+component.html
+<input type="text" [(ngModel)]="field" (input)="logInput()">
+
+Reactive form
+
+component.ts
+export class ExampleComponent {
+      newField = new FormControl('initial value');
+      ngOnInit(): void {
+        this.newField.valueChanges.subscribe(value => console.log(value))
+      }
+}
+
+component.html
+<input type="text" [formControl]="newField">
+
+FormGroup
+
+Allows to group controls together.
+
+Example
+
+component.ts
+export class ExampleComponent {
+    group: FormGroup = new FormGroup({
+        hello: new FormControl('hello value'),
+        world: new FormControl('world value'),
+    });
+}
+
+component.html
+<form [formGroup]="group">
+    <input type="text" formControlName="hello">
+    <input type="text" formControlName="world">
+</form>
